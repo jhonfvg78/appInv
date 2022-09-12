@@ -19,7 +19,12 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import ItemFactory from 'Database/factories/ItemFactory'
+
 
 Route.get('/', async ({ view }) => {
-  return view.render('welcome')
+  await ItemFactory.createMany(100)  
+  return view.render('index')
 })
+
+Route.resource('/item', 'ItemsController')
