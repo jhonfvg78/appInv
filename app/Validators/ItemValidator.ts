@@ -24,8 +24,8 @@ export default class ItemValidator {
    *    ```
    */
   public schema = schema.create({
-    code: schema.string(),
-    name: schema.string(),
+    tag: schema.string(),
+    reference: schema.string(),
     category: schema.string(),
     description: schema.string(),
     quantity: schema.number(),

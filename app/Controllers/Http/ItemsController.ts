@@ -13,6 +13,17 @@ export default class ItemsController {
   }
 
   public async store({ request, response }: HttpContextContract) {
+
+    console.log( request.body());
+   
+
+    // try {
+     
+    // } catch (error) {
+    //   console.log(error);
+      
+    // }
+    
     const payload = await request.validate(ItemValidator);
     await Item.create(payload);
     response.redirect('/item')

@@ -24,29 +24,30 @@
         <div class="content-wrapper">
           <!-- Content -->
           <div class="container-xxl flex-grow-1 container-p-y">
-            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Agragar /</span> Item</h4>
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Nuevo /</span> Item</h4>
 
             <div class="row">
               <div class="col-md-12">
-                {{-- <ul class="nav nav-pills flex-column flex-md-row mb-3">
+                <ul class="nav nav-pills flex-column flex-md-row mb-3">
                   <li class="nav-item">
-                    <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i> Account</a>
+                    <a class="nav-link active" href="javascript:void(0);"><i class='bx bxs-component me-1'></i> Item</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="pages-account-settings-notifications.html"><i class="bx bx-bell me-1"></i>
-                      Notifications</a>
+                    <a class="nav-link" href="pages-account-settings-notifications.html"><i
+                        class='bx bx-list-ol me-1'></i>
+                      Historial Préstamos</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="pages-account-settings-connections.html"><i
-                        class="bx bx-link-alt me-1"></i> Connections</a>
+                        class='bx bxs-wrench me-1'></i></i>Historial Mantenimiento</a>
                   </li>
-                </ul> --}}
+                </ul>
                 <div class="card mb-4">
-                  {{--  <h5 class="card-header">Profile Details</h5>  --}}
+                  {{-- <h5 class="card-header">Profile Details</h5> --}}
                   <!-- Account -->
                   <div class="card-body">
                     <div class="d-flex align-items-start align-items-sm-center gap-4">
-                      <img src="/img/avatars/1.png" alt="user-avatar" class="d-block rounded" height="120"
+                      <img src="/img/item/item.png" alt="user-avatar" class="d-block rounded border" height="120"
                         id="uploadedAvatar" />
                       {{-- <div class="button-wrapper">
                         <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
@@ -70,30 +71,37 @@
                     <form id="formAccountSettings" action="/item" method="POST">
                       <div class="row">
                         <div class="mb-3 col-md-6">
-                          <label for="code" class="form-label">Código</label>
-                          <input class="form-control" type="text" id="code" name="code" autofocus />
+                          <label for="tag" class="form-label">Tag</label>
+                          <input class="form-control" type="text" id="tag" name="tag" autofocus />
                         </div>
+
                         <div class="mb-3 col-md-6">
-                          <label for="name" class="form-label">Nombre</label>
-                          <input class="form-control" type="text" name="name" id="name" />
+                          <label for="reference" class="form-label">Referencia</label>
+                          <input class="form-control" type="text" name="reference" id="reference" />
                         </div>
+
+
+
                         <div class="mb-3 col-md-6">
-                          <label for="category" class="form-label">Categoria</label>
-                          <input type="text" class="form-control" id="category" name="category" />
+                          <label for="category" class="form-label">Categoría</label>
+                          <div class="input-group">
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i
+                                class='bx bx-message-square-add'></i></i></button>
+                            <select id="category" name="category" class="form-select">
+                              <option>Sin Categoría</option>
+                              <option value="1">One</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
+                          </div>
                         </div>
                         <div class="mb-3 col-md-6">
                           <label for="quantity" class="form-label">Cantidad</label>
                           <input type="number" class="form-control" id="quantity" name="quantity" min="0" />
                         </div>
-                        <div class="mb-3 col-md-6">
-                          <label for="location" class="form-label">Ubicación</label>
-                          <input type="text" class="form-control" id="location" name="location" />
-                        </div>
+                        
 
                         <div class="mb-3 col-md-6">
-                          {{-- <label for="image" class="form-label">Image</label>
-                          <input type="text" class="form-control" id="image" name="image" onchange="updateImage()" />
-                          --}}
                           <label for="image" class="form-label">URL Image</label>
                           <div class="input-group">
                             <input type="text" class="form-control" id="image" name="image" onchange="updateImage()" />
@@ -101,21 +109,41 @@
                           </div>
                         </div>
 
-
-
-                        <div class="mb-3 col-md-6 ">
-                          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                          <label class="form-check-label" for="flexSwitchCheckDefault">En mantenimento</label>
+                        <div class="mb-3 col-md-6">
+                          <label for="datasheet" class="form-label">URL Datasheet</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" id="datasheet" name="datasheet"
+                              onchange="updateImage()" />
+                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Borrar</button>
+                          </div>
                         </div>
 
-                      </div>
 
-                      <div class="mt-2">
+                        <div class="mb-3 col-md-6">
+                          <label for="location" class="form-label">Ubicación</label>
+                          <input type="text" class="form-control" id="location" name="location" />
+                        </div>
+                       
+
                         <div class="mb-3 col-md-6">
                           <label for="description" class="form-label">Descripción</label>
-                          <textarea class="form-control" id="description" name="description" rows="2"></textarea>
+                          <textarea class="form-control" id="description" name="description" rows="4"></textarea>
                         </div>
+
+                        <div class="mb-3 col-md-6 form-switch">             
+                          <input class="form-check-input" type="checkbox" role="switch" id="maintenance" name="maintenance" value="false">
+                          <label class="form-check-label" for="maintenance">Mantenimiento</label>
+                        </div>
+
                       </div>
+
+
+                    
+
+                      <div class="mt-2">
+                       
+                      </div>
+
 
                       <div class="mt-2">
                         <button type="submit" class="btn btn-primary me-2">Save changes</button>
@@ -125,7 +153,7 @@
                   </div>
                   <!-- /Account -->
                 </div>
-                
+
               </div>
             </div>
           </div>

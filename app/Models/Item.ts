@@ -6,10 +6,10 @@ export default class Item extends BaseModel {
   public id: number
 
   @column()
-  public code: string
+  public tag: string
 
   @column()
-  public name: string
+  public reference: string
 
   @column()
   public category: string
