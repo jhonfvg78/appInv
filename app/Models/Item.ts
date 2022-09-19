@@ -1,12 +1,12 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, beforeSave, column } from '@ioc:Adonis/Lucid/Orm'
 
 export default class Item extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
   @column()
-  public tag: string
+  public tag?: string
 
   @column()
   public reference: string
@@ -15,26 +15,35 @@ export default class Item extends BaseModel {
   public category: string
 
   @column()
-  public description: string
+  public description?: string
 
   @column()
   public quantity: number
 
   @column()
-  public location: string
+  public location?: string
 
   @column()
-  public maintenance: boolean
+  public maintenance: string
 
   @column()
-  public image: string
+  public image?: string
 
   @column()
-  public datasheet: string
+  public datasheet?: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @beforeSave()
+  public static async tagUpperCase(item: Item) {
+    try {     
+      item.tag = item.tag.toUpperCase();   
+    } catch (error) {
+      
+    }      
+  }
 }

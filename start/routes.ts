@@ -23,8 +23,10 @@ import ItemFactory from 'Database/factories/ItemFactory'
 
 
 Route.get('/', async ({ view }) => {
-  await ItemFactory.createMany(100)  
+  //await ItemFactory.createMany(100)  
   return view.render('index')
 })
 
 Route.resource('/item', 'ItemsController')
+
+Route.get('itemDelete/:id','ItemsController.delete')

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/"
+    data-template="vertical-menu-template-free">
+
+@include('partials/head')
+
+<body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+
+            <!-- Menu -->
+            @include('partials/aside')
+            <!-- / Menu -->
+
+            <!-- Layout container -->
+            <div class="layout-page">
+                <!-- Navbar -->
+                @include('partials/header')
+                <!-- / Navbar -->
+
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+                    <!-- Content -->
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tables /</span> Basic Tables
+                        </h4>
+
+                        <!-- Basic Bootstrap Table -->
+                        <div class="card">
+                            <h5 class="card-header">Table Basic</h5>
+                            <div class="table-responsive text-nowrap">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Referencia</th>
+                                            <th>Cantidad</th>
+                                            <th>Ubicación</th>    
+                                            <th>Estado</th>                                       
+                                            <th>image</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-border-bottom-0">
+
+                                        @each(item in items)
+
+                                        <tr>                                            
+                                            <td>{{ item.reference }}</td>                                           
+                                            <td>{{ item.quantity }}</td>
+                                            <td>{{ item.location }}</td>
+                                            <td>{{ item.maintenance }}</td>
+                                            <td> <a class="example-image-link" href="{{ item.image }}"
+                                                    data-lightbox="example-1"><img class="rounded float-start"
+                                                        height="50px" src="{{ item.image }}" alt="image-1" /></a>
+                                            </td>
+                                            <td>
+                                                <a href="itemDelete/{{item.id}}" class="btn btn-primary btn-sm" aria-current="page" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top"><i class="fa-solid fa-file-pen"></i></a>
+                                                <a href="itemDelete?item.id" class="btn btn-danger btn-sm" aria-current="page"><i class="fa-solid fa-trash"></i></a> 
+                                                <a href="itemDelete?item.id" class="btn btn-info btn-sm" aria-current="page"><i class="fa-solid fa-circle-info"></i></a> 
+                                            </td>                                           
+                                        </tr>
+                                        @end
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--/ Basic Bootstrap Table -->
+
+                        <hr class="my-5" />
+
+                    </div>
+                    <!-- / Content -->
+                    @include('partials/footer')
+                    <!-- Footer -->
+
+                    <!-- / Footer -->
+
+                    <div class="content-backdrop fade"></div>
+                </div>
+                <!-- Content wrapper -->
+            </div>
+            <!-- / Layout page -->
+        </div>
+
+        <!-- Overlay -->
+        <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+
+
+
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="/vendor/libs/jquery/jquery.js"></script>
+    <script src="/vendor/libs/popper/popper.js"></script>
+    <script src="/vendor/js/bootstrap.js"></script>
+    <script src="/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="/vendor/js/menu.js"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script src="/vendor/libs/apex-charts/apexcharts.js"></script>
+
+    <!-- Main JS -->
+    <script src="/js/main.js"></script>
+
+    <!-- Page JS -->
+    <script src="/js/dashboards-analytics.js"></script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+    <!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <!-- Magnific Popup core JS file -->
+    <script src="magnific-popup/jquery.magnific-popup.js"></script>
+
+
+    <script src="dist/js/lightbox.js"></script>
+</body>
+
+</html>

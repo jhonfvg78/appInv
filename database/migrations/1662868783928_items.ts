@@ -12,7 +12,7 @@ export default class extends BaseSchema {
       table.string('description')
       table.integer('quantity')
       table.string('location')
-      table.boolean('maintenance')      
+      table.string('maintenance')      
       table.string('image')
       table.string('datasheet')
       
