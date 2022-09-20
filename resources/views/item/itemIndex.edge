@@ -36,18 +36,19 @@
                                         <tr>
                                             <th>Referencia</th>
                                             <th>Cantidad</th>
-                                            <th>Ubicación</th>    
-                                            <th>Estado</th>                                       
+                                            <th>Ubicación</th>
+                                            <th>Estado</th>
                                             <th>image</th>
                                             <th>Acciones</th>
+                                            <th>Agregar</th>
                                         </tr>
                                     </thead>
                                     <tbody class="table-border-bottom-0">
 
                                         @each(item in items)
 
-                                        <tr>                                            
-                                            <td>{{ item.reference }}</td>                                           
+                                        <tr>
+                                            <td>{{ item.reference }}</td>
                                             <td>{{ item.quantity }}</td>
                                             <td>{{ item.location }}</td>
                                             <td>{{ item.maintenance }}</td>
@@ -56,10 +57,24 @@
                                                         height="50px" src="{{ item.image }}" alt="image-1" /></a>
                                             </td>
                                             <td>
-                                                <a href="itemDelete/{{item.id}}" class="btn btn-primary btn-sm" aria-current="page" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top"><i class="fa-solid fa-file-pen"></i></a>
-                                                <a href="itemDelete?item.id" class="btn btn-danger btn-sm" aria-current="page"><i class="fa-solid fa-trash"></i></a> 
-                                                <a href="itemDelete?item.id" class="btn btn-info btn-sm" aria-current="page"><i class="fa-solid fa-circle-info"></i></a> 
-                                            </td>                                           
+                                                <div class="btn-group" role="group" aria-label="Basic example">
+                                                    <a href="itemDelete/{{item.id}}"
+                                                        class="btn btn-outline-primary btn-sm" aria-current="page"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        data-bs-title="Tooltip on top"><i
+                                                            class="fa-solid fa-file-pen"></i></a>
+                                                    <a href="itemDelete?item.id" class="btn btn-outline-primary btn-sm"
+                                                        aria-current="page"><i class="fa-solid fa-trash"></i></a>
+                                                    <a href="itemDelete?item.id" class="btn btn-outline-primary btn-sm"
+                                                        aria-current="page"><i class="fa-solid fa-circle-info"></i></a>
+                                                </div>
+
+
+                                            </td>
+                                            <td>
+                                                <a href="itemDelete?item.id" class="btn btn-outline-info btn-sm"
+                                                    aria-current="page"><i class="fa-solid fa-circle-plus"></i></a>
+                                            </td>
                                         </tr>
                                         @end
 
