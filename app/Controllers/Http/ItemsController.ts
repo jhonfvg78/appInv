@@ -9,33 +9,38 @@ export default class ItemsController {
   }
 
   public async create({ view }: HttpContextContract) {
-    return view.render('item/itemCreate')
+    return view.render('item/itemCreate', { mode: "create" })
   }
 
   public async store({ request, response }: HttpContextContract) {
+    console.log(request.body());
+    const payload = await request.validate(ItemValidator);
+    await Item.create(payload);
+    response.redirect('/item')
+  }
+
+  public async show({ params, view }: HttpContextContract) {
+    const item = await Item.find(params.id)
+    return view.render('item/itemShow', { item: item })
+  }
+
+  public async edit({ view, params }: HttpContextContract) {
+    const item = await Item.find(params.id)
+    return view.render('item/itemUpdate', { item: item })
+  }
+
+  public async update({ params, request, response }: HttpContextContract) {
     try {
-      console.log(request.body());
       const payload = await request.validate(ItemValidator);
-      await Item.create(payload);
-      response.redirect('/itemIndex')
+      await Item.query().where('id', params.id).update(payload)
+      response.redirect('/item')
     } catch (error) {
-      console.log(error.messages);
+      console.log(error);
     }
   }
 
-  public async show({ }: HttpContextContract) { }
-
-  public async edit({ }: HttpContextContract) { }
-
-  public async update({ }: HttpContextContract) { }
-
-  public async delete({ view, params }: HttpContextContract) {
-
-  
-    const item = await Item.find(params.id)
-    console.log(item);
-    return view.render('item/itemDelete', { item: item })
+  public async destroy({ response, params }: HttpContextContract) {
+    await Item.query().where('id', params.id).delete()
+    response.redirect('/item')
   }
-
-  public async destroy({ }: HttpContextContract) { }
 }

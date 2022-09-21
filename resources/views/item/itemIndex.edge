@@ -24,12 +24,15 @@
                 <div class="content-wrapper">
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
-                        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tables /</span> Basic Tables
-                        </h4>
-
+                        {{--  <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tables /</span> Basic Tables
+                        </h4>  --}}
+                        <div class="d-flex flex-row-reverse mb-2">
+                            <a href="item/create" class="btn btn-primary" aria-current="page">Nuevo</a>
+                        </div>
+                        
                         <!-- Basic Bootstrap Table -->
                         <div class="card">
-                            <h5 class="card-header">Table Basic</h5>
+                            <h5 class="card-header">Items</h5>                           
                             <div class="table-responsive text-nowrap">
                                 <table class="table">
                                     <thead>
@@ -58,14 +61,14 @@
                                             </td>
                                             <td>
                                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <a href="itemDelete/{{item.id}}"
+                                                    <a href="item/edit/{{item.id}}"
                                                         class="btn btn-outline-primary btn-sm" aria-current="page"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
                                                         data-bs-title="Tooltip on top"><i
                                                             class="fa-solid fa-file-pen"></i></a>
-                                                    <a href="itemDelete?item.id" class="btn btn-outline-primary btn-sm"
+                                                    <a href="item/{{item.id}}" class="btn btn-outline-primary btn-sm"
                                                         aria-current="page"><i class="fa-solid fa-trash"></i></a>
-                                                    <a href="itemDelete?item.id" class="btn btn-outline-primary btn-sm"
+                                                    <a href="item/{{item.id}}" class="btn btn-outline-primary btn-sm"
                                                         aria-current="page"><i class="fa-solid fa-circle-info"></i></a>
                                                 </div>
 

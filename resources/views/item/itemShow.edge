@@ -34,8 +34,11 @@
                                 </div>
                                 <h5 class="card-title mt-2">Descripción</h5>
                                 <p class="card-text">{{item.description}}</p>
-                                <a href="#" class="btn btn-danger">Eliminar</a>
-                                <a href="javascript:history.back()" class="btn btn-primary">Cancelar</a>
+                                <form action="/item/delete/{{item.id}}" method="POST">
+                                    <button class="btn btn-danger" type="submit">Eliminar</button>
+                                    <a href="javascript:history.back()" class="btn btn-primary">Cancelar</a>
+                                </form>                               
+                               
                             </div>
                         </div>
                     </div>

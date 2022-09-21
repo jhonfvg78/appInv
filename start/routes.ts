@@ -27,6 +27,15 @@ Route.get('/', async ({ view }) => {
   return view.render('index')
 })
 
-Route.resource('/item', 'ItemsController')
 
-Route.get('itemDelete/:id','ItemsController.delete')
+Route.group(() => {
+  Route.get('/', 'ItemsController.index')
+  Route.get('/create', 'ItemsController.create')
+  Route.post('/', 'ItemsController.store')
+  Route.get('/:id', 'ItemsController.show')
+  Route.get('/edit/:id', 'ItemsController.edit')
+  Route.post('/udpate/:id', 'ItemsController.update')
+  Route.post('/delete/:id', 'ItemsController.destroy')
+}).prefix('/item')
+
+

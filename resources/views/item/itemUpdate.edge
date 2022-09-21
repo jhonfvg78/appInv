@@ -27,7 +27,7 @@
 
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Nuevo /</span> Item</h4>
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Actualizar /</span> Item</h4>
 
               <div class="row">
                 <div class="col-md-12">
@@ -49,8 +49,9 @@
                   <div class="card mb-4">
 
                     <div class="card-body">
-                      
-                      <form id="formAccountSettings" action="/item" method="POST">
+
+                      <h1>Create</h1>
+                      <form id="formAccountSettings" action="/item/udpate/{{item.id}}" method="POST">
                         @if( flashMessages.get('errors.quantity') )
                         <div class="alert alert-danger" id="alert" role="alert">
                           Error
@@ -64,7 +65,7 @@
                         <div class="row">
                           <div class="col">
                             <div class="d-flex align-items-start align-items-sm-center gap-4">
-                              <img src="/img/item/item.png" alt="user-avatar" class="d-block rounded border"
+                              <img src="{{item.image}}" alt="user-avatar" class="d-block rounded border"
                                 height="120" id="uploadedAvatar" />
                             </div>
                           </div>
@@ -72,8 +73,8 @@
                             <div class="mb-3 col-md">
                               <label for="image" class="form-label">URL Image</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="image" name="image"
-                                  onchange="updateImage()" />
+                                <input type="text" class="form-control" id="image" name="image" onchange="updateImage()"
+                                  value="{{item.image}}" />
                                 <button class="btn btn-outline-secondary" type="button"
                                   id="button-addon2">Borrar</button>
                               </div>
@@ -83,7 +84,7 @@
                               <label for="datasheet" class="form-label">URL Datasheet</label>
                               <div class="input-group">
                                 <input type="text" class="form-control" id="datasheet" name="datasheet"
-                                  onchange="updateImage()" />
+                                  onchange="updateImage()" value="{{item.datasheet}}" />
                                 <button class="btn btn-outline-secondary" type="button"
                                   id="button-addon2">Borrar</button>
                               </div>
@@ -95,17 +96,18 @@
                           <div class="mb-3 col-md-6">
                             <label for="tag" class="form-label">Tag</label>
                             <div class="input-group">
-                              <input class="form-control" type="text" id="tag" name="tag" autofocus  style="text-transform:uppercase" required/>
-                              <button class="btn btn-outline-secondary" type="button"
-                                id="button-addon2" onclick="genId()">Generar</button>
+                              <input class="form-control" type="text" id="tag" name="tag" autofocus
+                                style="text-transform:uppercase" required value="{{item.tag}}" />
+                              <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                                onclick="genId()">Generar</button>
                             </div>
-                            
+
                           </div>
 
                           <div class="mb-3 col-md-6">
-                            <label for="reference" class="form-label">Referencia</label>                           
+                            <label for="reference" class="form-label">Referencia</label>
                             <input class="form-control" type="text" name="reference" id="reference"
-                              value="{{ flashMessages.get('reference', '') }}" required/>                            
+                              value="{{item.reference}}" required />
                           </div>
 
                           <div class="mb-3 col-md-6">
@@ -113,7 +115,7 @@
                             <div class="input-group">
                               <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i
                                   class='bx bx-message-square-add'></i></i></button>
-                              <select id="category" name="category" class="form-select">
+                              <select id="category" name="category" class="form-select" value="{{item.category}}">
                                 <option>Sin Categoría</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
@@ -123,20 +125,20 @@
                           </div>
 
                           <div class="mb-3 col-md-6">
-                            <label for="quantity" class="form-label">Cantidad</label>                            
+                            <label for="quantity" class="form-label">Cantidad</label>
                             <input type="number" class="form-control" id="quantity" name="quantity" min="0"
-                              value="{{ flashMessages.get('quantity', '') }}" required/>                           
+                              value="{{item.quantity}}" required />
                           </div>
 
                           <div class="mb-3 col-md-6">
                             <label for="location" class="form-label">Ubicación</label>
                             <input type="text" class="form-control" id="location" name="location"
-                              style="text-transform:uppercase" />
+                              style="text-transform:uppercase" value="{{item.location}}"/>
                           </div>
 
                           <div class="mb-3 col-md-6">
                             <label for="maintenance" class="form-label">Estado</label>
-                            <select id="maintenance" name="maintenance" class="form-select">
+                            <select id="maintenance" name="maintenance" class="form-select" value="{{item.maintenance}}">
                               <option selected value="1">Normal</option>
                               <option value="2">Mantenimiento</option>
                             </select>
@@ -144,18 +146,17 @@
 
                           <div class="mb-3 col-md">
                             <label for="description" class="form-label">Descripción</label>
-                            <textarea class="form-control" id="description" name="description" rows="2"></textarea>
+                            <textarea class="form-control" id="description" name="description" rows="2" value="{{item.maintenance}}"></textarea>
                           </div>
 
                         </div>
 
                         <div class="mt-2">
-                          <button type="submit" class="btn btn-info me-2">Guardar</button>
+                          <button type="submit" class="btn btn-info me-2">Actualizar</button>
                           <a href="javascript:history.back()" class="btn btn-primary">Cancelar</a>
                         </div>
-
                       </form>
-                     
+
                     </div>
                     <!-- /Account -->
                   </div>

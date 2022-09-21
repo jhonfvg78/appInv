@@ -24,8 +24,8 @@ export default class ItemValidator {
    *    ```
    */
   public schema = schema.create({
-    tag: schema.string.optional({}, [rules.unique({ table: 'items', column: 'tag', caseInsensitive: true })]),
-    reference: schema.string({}, [rules.required(), rules.unique({ table: 'items', column: 'reference', caseInsensitive: true })]),
+    tag: schema.string.optional({}, [rules.required()]),
+    reference: schema.string({}, [rules.required()]),
     category: schema.string({}, [rules.required()]),
     description: schema.string.optional(),
     quantity: schema.number([rules.required()]),
