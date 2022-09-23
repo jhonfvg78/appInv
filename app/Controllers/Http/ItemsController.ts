@@ -21,7 +21,7 @@ export default class ItemsController {
 
   public async show({ params, view }: HttpContextContract) {
     const item = await Item.find(params.id)
-    return view.render('item/itemShow', { item: item })
+    return view.render('item/itemDelete', { item: item })
   }
 
   public async edit({ view, params }: HttpContextContract) {
