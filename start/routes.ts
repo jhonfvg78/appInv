@@ -19,23 +19,28 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import CategoryFactory from 'Database/factories/CategoryFactory'
 import ItemFactory from 'Database/factories/ItemFactory'
 
 
 Route.get('/', async ({ view }) => {
-  //await ItemFactory.createMany(100)  
+//   await ItemFactory.createMany(100)  
+//  await CategoryFactory.createMany(50)
   return view.render('index')
 })
 
 
 Route.group(() => {
-  Route.get('/', 'ItemsController.index')
-  Route.get('/create', 'ItemsController.create')
-  Route.post('/', 'ItemsController.store')
-  Route.get('/:id', 'ItemsController.show')
-  Route.get('/edit/:id', 'ItemsController.edit')
-  Route.post('/udpate/:id', 'ItemsController.update')
-  Route.post('/delete/:id', 'ItemsController.destroy')
-}).prefix('/item')
+  Route.get('/', 'ItemsController.viewListAll')
+  Route.get('/detail/:id', 'ItemsController.viewDetail')
+  Route.get('/create', 'ItemsController.viewCreate')
+  Route.get('/edit/:id', 'ItemsController.viewEdit')  
+  Route.get('/delete/:id', 'ItemsController.viewDelete')  
+  Route.post('/', 'ItemsController.apiStore') 
+  Route.post('/udpate/:id', 'ItemsController.apiUpdate')
+  Route.post('/delete/:id', 'ItemsController.apiDelete')
+}).prefix('/item/')
 
 
+
+Route.get('/category','CategoriesController.listView')

@@ -49,7 +49,7 @@
                   <div class="card mb-4">
 
                     <div class="card-body">
-                      
+
                       <form id="formAccountSettings" action="/item" method="POST">
                         @if( flashMessages.get('errors.quantity') )
                         <div class="alert alert-danger" id="alert" role="alert">
@@ -64,8 +64,8 @@
                         <div class="row">
                           <div class="col">
                             <div class="d-flex align-items-start align-items-sm-center gap-4">
-                              <img src="/img/item/item.png" alt="user-avatar" class="d-block rounded border"
-                                height="120" id="uploadedAvatar" />
+                              <img src="/template/img/item/item.png" alt="user-avatar" class="d-block rounded border"
+                                height="120" id="uploadedAvatar" data-lightbox="roadtrip" />
                             </div>
                           </div>
                           <div class="col">
@@ -95,17 +95,18 @@
                           <div class="mb-3 col-md-6">
                             <label for="tag" class="form-label">Tag</label>
                             <div class="input-group">
-                              <input class="form-control" type="text" id="tag" name="tag" autofocus  style="text-transform:uppercase" required/>
-                              <button class="btn btn-outline-secondary" type="button"
-                                id="button-addon2" onclick="genId()">Generar</button>
+                              <input class="form-control" type="text" id="tag" name="tag" autofocus
+                                style="text-transform:uppercase" required />
+                              <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                                onclick="genId()">Generar</button>
                             </div>
-                            
+
                           </div>
 
                           <div class="mb-3 col-md-6">
-                            <label for="reference" class="form-label">Referencia</label>                           
+                            <label for="reference" class="form-label">Referencia</label>
                             <input class="form-control" type="text" name="reference" id="reference"
-                              value="{{ flashMessages.get('reference', '') }}" required/>                            
+                              value="{{ flashMessages.get('reference', '') }}" required />
                           </div>
 
                           <div class="mb-3 col-md-6">
@@ -115,17 +116,17 @@
                                   class='bx bx-message-square-add'></i></i></button>
                               <select id="category" name="category" class="form-select">
                                 <option>Sin Categoría</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                @each(category in categories)
+                                <option value="{{category.name}}">{{category.name}}</option>
+                                @end
                               </select>
                             </div>
                           </div>
 
                           <div class="mb-3 col-md-6">
-                            <label for="quantity" class="form-label">Cantidad</label>                            
+                            <label for="quantity" class="form-label">Cantidad</label>
                             <input type="number" class="form-control" id="quantity" name="quantity" min="0"
-                              value="{{ flashMessages.get('quantity', '') }}" required/>                           
+                              value="{{ flashMessages.get('quantity', '') }}" required />
                           </div>
 
                           <div class="mb-3 col-md-6">
@@ -155,7 +156,7 @@
                         </div>
 
                       </form>
-                     
+
                     </div>
                     <!-- /Account -->
                   </div>
@@ -163,9 +164,6 @@
                 </div>
               </div>
             </div>
-
-
-
 
             <!-- / Content -->
             @include('partials/footer')
@@ -185,31 +183,10 @@
     </div>
     <!-- / Layout wrapper -->
 
+    @include('partials/scripts')
 
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="/vendor/libs/jquery/jquery.js"></script>
-    <script src="/vendor/libs/popper/popper.js"></script>
-    <script src="/vendor/js/bootstrap.js"></script>
-    <script src="/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-
-    <script src="/vendor/js/menu.js"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="/vendor/libs/apex-charts/apexcharts.js"></script>
-
-    <!-- Main JS -->
-    <script src="/js/main.js"></script>
-
-    <!-- Page JS -->
-    <script src="/js/dashboards-analytics.js"></script>
-
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-
-    <script src="/js/pages-account-settings-account.js"></script>
-    <script src="/pagesjs/itemcu.js"></script>
+    <!-- ScriptItems -->
+    <script src="/pages/item.js"></script>
 </body>
 
 </html>

@@ -31,19 +31,17 @@
                                 <div class="d-flex align-items-start align-items-sm-center gap-4">
                                     <img src="{{ item.image }}" alt="user-avatar" class="d-block rounded border"
                                         height="120" id="uploadedAvatar" />
-                                </div>
-                                <h5 class="card-title mt-2">Descripción</h5>
-                                <p class="card-text">{{item.description}}</p>
+                                </div>                                
                                 <div class="mb-3 col-md-6">
-                                    <label for="location" class="form-label">Ubicación</label>
-                                    <input type="text" class="form-control" id="location" name="location"
-                                      style="text-transform:uppercase" />
-                                  </div>
-                                <form action="/item/delete/{{item.id}}" method="POST">
-                                    <button class="btn btn-danger" type="submit">Eliminar</button>
+                                    <label for="location" class="form-label">VALIDAR REFERENCIA</label>
+                                    <input type="text" class="form-control" id="confirm_delete" name="confirm_delete"
+                                        />
+                                </div>
+                                <form id="formId"  action="/item/delete/{{item.id}}" method="POST">
+                                    <button class="btn btn-danger" type="button" onclick="return prepareForm('{{item.reference}}')">Eliminar</button>
                                     <a href="javascript:history.back()" class="btn btn-primary">Cancelar</a>
-                                </form>                               
-                               
+                                </form>
+
                             </div>
                         </div>
                     </div>
@@ -65,30 +63,10 @@
     </div>
     <!-- / Layout wrapper -->
 
+    @include('partials/scripts')
 
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="/vendor/libs/jquery/jquery.js"></script>
-    <script src="/vendor/libs/popper/popper.js"></script>
-    <script src="/vendor/js/bootstrap.js"></script>
-    <script src="/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-
-    <script src="/vendor/js/menu.js"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="/vendor/libs/apex-charts/apexcharts.js"></script>
-
-    <!-- Main JS -->
-    <script src="/js/main.js"></script>
-
-    <!-- Page JS -->
-    <script src="/js/dashboards-analytics.js"></script>
-
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-
-    <script src="/js/pages-account-settings-account.js"></script>
+    <!-- ScriptItems -->
+    <script src="/pages/item.js"></script>
 </body>
 
 </html>

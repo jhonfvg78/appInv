@@ -8,8 +8,8 @@
 <body>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
-        <div class="layout-container">
 
+        <div class="layout-container">
             <!-- Menu -->
             @include('partials/aside')
             <!-- / Menu -->
@@ -24,15 +24,16 @@
                 <div class="content-wrapper">
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
-                        {{--  <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tables /</span> Basic Tables
-                        </h4>  --}}
+                        {{-- <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tables /</span> Basic
+                            Tables
+                        </h4> --}}
                         <div class="d-flex flex-row-reverse mb-2">
-                            <a href="item/create" class="btn btn-primary" aria-current="page">Nuevo</a>
+                            <a href="item/create/" class="btn btn-primary" aria-current="page">Nuevo</a>
                         </div>
-                        
+
                         <!-- Basic Bootstrap Table -->
                         <div class="card">
-                            <h5 class="card-header">Items</h5>                           
+                            <h5 class="card-header">Items</h5>
                             <div class="table-responsive text-nowrap">
                                 <table class="table">
                                     <thead>
@@ -56,7 +57,7 @@
                                             <td>{{ item.location }}</td>
                                             <td>{{ item.maintenance }}</td>
                                             <td> <a class="example-image-link" href="{{ item.image }}"
-                                                    data-lightbox="example-1"><img class="rounded float-start"
+                                                    data-lightbox="roadtrip"><img class="rounded float-start"
                                                         height="50px" src="{{ item.image }}" alt="image-1" /></a>
                                             </td>
                                             <td>
@@ -64,15 +65,16 @@
                                                     <a href="item/edit/{{item.id}}"
                                                         class="btn btn-outline-primary btn-sm" aria-current="page"
                                                         data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        data-bs-title="Tooltip on top"><i
+                                                        data-bs-title="Editar"><i
                                                             class="fa-solid fa-file-pen"></i></a>
-                                                    <a href="item/{{item.id}}" class="btn btn-outline-primary btn-sm"
-                                                        aria-current="page"><i class="fa-solid fa-trash"></i></a>
-                                                    <a href="item/{{item.id}}" class="btn btn-outline-primary btn-sm"
-                                                        aria-current="page"><i class="fa-solid fa-circle-info"></i></a>
+                                                    <a href="item/detail/{{item.id}}" class="btn btn-outline-primary btn-sm"
+                                                        aria-current="page"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        data-bs-title="Detalles"><i class="fa-solid fa-circle-info"></i></a>
+                                                    <a href="item/delete/{{item.id}}" class="btn btn-outline-primary btn-sm"
+                                                        aria-current="page" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                        data-bs-title="Eliminar"><i class="fa-solid fa-trash"></i></a>
                                                 </div>
-
-
                                             </td>
                                             <td>
                                                 <a href="itemDelete?item.id" class="btn btn-outline-info btn-sm"
@@ -108,41 +110,10 @@
     </div>
     <!-- / Layout wrapper -->
 
+    @include('partials/scripts')
 
-
-
-
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="/vendor/libs/jquery/jquery.js"></script>
-    <script src="/vendor/libs/popper/popper.js"></script>
-    <script src="/vendor/js/bootstrap.js"></script>
-    <script src="/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-
-    <script src="/vendor/js/menu.js"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script src="/vendor/libs/apex-charts/apexcharts.js"></script>
-
-    <!-- Main JS -->
-    <script src="/js/main.js"></script>
-
-    <!-- Page JS -->
-    <script src="/js/dashboards-analytics.js"></script>
-
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-
-
-    <!-- jQuery 1.7.2+ or Zepto.js 1.0+ -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-    <!-- Magnific Popup core JS file -->
-    <script src="magnific-popup/jquery.magnific-popup.js"></script>
-
-
-    <script src="dist/js/lightbox.js"></script>
+    <!-- ScriptItems -->
+    <script src="/pages/item.js"></script>
 </body>
 
 </html>

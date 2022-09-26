@@ -29,8 +29,3 @@ document.addEventListener('DOMContentLoaded', function (e) {
 });
 
 
-function updateImage() {
-  let imageInput = document.getElementById("image");
-  let image = document.getElementById("uploadedAvatar");
-  if (imageInput.value) image.src = imageInput.value;
-}
