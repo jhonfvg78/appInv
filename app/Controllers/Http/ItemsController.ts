@@ -6,9 +6,12 @@ import ItemValidator from 'App/Validators/ItemValidator'
 export default class ItemsController {
 
   //Views
-  public async viewListAll({ view }: HttpContextContract) {
-    const items = await Item.all()
-    return view.render('item/itemListAll', { items: items })
+  public async viewList({ view, params }: HttpContextContract) {
+    const items = await Item
+      .query() // 👈now have access to all query builder methods
+      .where('category', params.category)
+    const categories = await Category.all()
+    return view.render('item/itemList', { items: items, categories: categories, category: params.category })
   }
 
   public async viewDetail({ params, view }: HttpContextContract) {
@@ -19,17 +22,18 @@ export default class ItemsController {
   public async viewCreate({ view }: HttpContextContract) {
     const categories = await Category.all()
     return view.render('item/itemCreate', { categories: categories })
-  }   
+  }
 
   public async viewEdit({ view, params }: HttpContextContract) {
+    const categories = await Category.all()
     const item = await Item.find(params.id)
-    return view.render('item/itemUpdate', { item: item })
-  }  
+    return view.render('item/itemUpdate', { item: item, categories: categories })
+  }
 
   public async viewDelete({ view, params }: HttpContextContract) {
     const item = await Item.find(params.id)
     return view.render('item/itemDelete', { item: item })
-  }  
+  }
 
   //Api
   public async apiStore({ request, response }: HttpContextContract) {
@@ -43,7 +47,7 @@ export default class ItemsController {
     try {
       const payload = await request.validate(ItemValidator);
       await Item.query().where('id', params.id).update(payload)
-      response.redirect('/item')
+      response.redirect('/item/list/' + payload.category)
     } catch (error) {
       console.log(error);
     }

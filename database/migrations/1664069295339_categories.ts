@@ -7,6 +7,9 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.string('name')
+      table.string('description')
+      table.integer('quantity')
+      table.string('image')
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

@@ -44,9 +44,34 @@ function prepareForm(reference) {
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         }
-        toastr.error('Error de validación')       
+        toastr.error('Error de validación')
         input.value = "";
         return false
     }
 }
+
+$(document).ready(function () {
+    $('#example').DataTable({
+        dom: 'Bfrtip',
+        buttons: [            
+            'excel',
+            'pdf',   
+            {
+                text: '<i class="fa-solid fa-list"></i>',
+                action: function (e, dt, node, config) {
+                    $('#exampleModal').modal('show');
+                }
+            }
+            ,
+            {
+                text: '<i class="fa-regular fa-file"></i>',
+                className: 'btn btn-primary',
+                action: function (e, dt, node, config) {
+                    document.location.href="/item/create"                                 
+                }
+            }
+        ]
+    });
+});
+
 

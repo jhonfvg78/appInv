@@ -3,12 +3,14 @@ import Factory from '@ioc:Adonis/Lucid/Factory'
 
 export default Factory.define(item, ({ faker }) => {
   return {
-    code: faker.random.numeric(5),
-    name: faker.internet.userName(),
+    tag: faker.random.numeric(5),
+    reference: faker.word.noun(),
     category: faker.word.adjective(),
     description: faker.lorem.sentence(),
     quantity: parseInt(faker.random.numeric(5)),
     location: faker.word.adjective(),
-    image: faker.image.technics()
+    maintenance: "NORMAL",
+    image: faker.image.technics(),
+    datasheet: ""
   }
 }).build()

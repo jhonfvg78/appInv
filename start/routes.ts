@@ -24,14 +24,14 @@ import ItemFactory from 'Database/factories/ItemFactory'
 
 
 Route.get('/', async ({ view }) => {
-//   await ItemFactory.createMany(100)  
-//  await CategoryFactory.createMany(50)
+  //  await ItemFactory.createMany(2000)  
+  // await CategoryFactory.createMany(50)
   return view.render('index')
 })
 
 
 Route.group(() => {
-  Route.get('/', 'ItemsController.viewListAll')
+  Route.get('/list/:category', 'ItemsController.viewList')
   Route.get('/detail/:id', 'ItemsController.viewDetail')
   Route.get('/create', 'ItemsController.viewCreate')
   Route.get('/edit/:id', 'ItemsController.viewEdit')  
