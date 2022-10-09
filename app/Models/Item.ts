@@ -27,7 +27,7 @@ export default class Item extends BaseModel {
   public image: string
 
   @column()
-  public datasheet?: string
+  public datasheet: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

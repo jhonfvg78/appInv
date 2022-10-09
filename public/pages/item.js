@@ -58,18 +58,30 @@ $(document).ready(function () {
     $('#dataTables').DataTable({
         dom: 'Bfrtip',
         buttons: [
-            'excel',
-            'pdf',
+            {
+                extend: 'excel',
+                text: '<i class="fa-solid fa-file-excel"></i>',
+                titleAttr: 'Exportar a Excel',
+                className: 'btn btn-info',
+            },
+            {
+                extend: 'pdf',
+                text: '<i class="fa-solid fa-file-pdf"></i> ',
+                titleAttr: 'Exportar a PDF',
+                className: 'btn btn-info',
+            },
             {
                 text: '<i class="fa-solid fa-list"></i>',
+                className: 'btn btn-info',
+                titleAttr: 'Categorías',
                 action: function (e, dt, node, config) {
                     $('#exampleModal').modal('show');
                 }
-            }
-            ,
+            },
             {
                 text: '<i class="fa-regular fa-file"></i>',
-                className: 'btn btn-primary',
+                className: 'btn btn-info',
+                titleAttr: 'Agregar Elemento',
                 action: function (e, dt, node, config) {
                     document.location.href = "/item/create"
                 }
@@ -78,7 +90,14 @@ $(document).ready(function () {
     });
 });
 
-function isImage(url) {
-    return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
+// function isImage(url) {
+//     return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
+// }
+
+function openDataSheet() {
+    let dataSheetInput = document.getElementById("inputdatasheet").value;
+    window.open(dataSheetInput);
 }
+
+
 

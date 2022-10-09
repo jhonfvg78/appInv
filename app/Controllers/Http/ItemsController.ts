@@ -7,11 +7,20 @@ export default class ItemsController {
 
   //Views
 
-  public async viewItem({ view ,params}: HttpContextContract) {
+  public async viewTag({ view, params }: HttpContextContract) {
     const items = await Item
-    .query()
-    .whereLike( 'reference',params.reference)
-    return view.render('item/itemList', { items: items ,category: ""})
+      .query()
+      .where('tag', params.tag)
+    const categories = await Category.all()
+    return view.render('item/itemList', { items: items, categories: categories, category: "Todas" })
+  }
+
+  public async viewReference({ view, params }: HttpContextContract) {
+    const items = await Item
+      .query()
+      .where('reference', 'LIKE', '%' + params.reference + '%')
+    const categories = await Category.all()
+    return view.render('item/itemList', { items: items, categories: categories, category: "Todas" })
   }
 
   public async viewList({ view, params }: HttpContextContract) {

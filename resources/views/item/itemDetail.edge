@@ -30,14 +30,23 @@
                             <div class="card-body">
                                 <div class="d-flex align-items-start align-items-sm-center gap-4">
                                     <img src="{{ item.image }}" alt="user-avatar" class="d-block rounded border"
-                                        height="120" id="uploadedAvatar" />
+                                        height="120" />
                                 </div>
                                 <h5 class="card-title mt-2">Descripción</h5>
                                 <p class="card-text">{{item.description}}</p>
-                                <form action="/item/delete/{{item.id}}" method="POST">
-                                    <button class="btn btn-danger" type="submit">Eliminar</button>
-                                    <a href="javascript:history.back()" class="btn btn-primary">Cancelar</a>
-                                </form>
+
+                                <div class="mb-3 col-md">
+                                    <label for="datasheet" class="form-label">URL Datasheet</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inputdatasheet" name="datasheet" value="{{item.datasheet}}"
+                                            onchange="updateImage()" />
+                                        <button class="btn btn-outline-secondary" type="button" onclick="openDataSheet()"
+                                            id="button-addon2">Abrir</button>
+                                    </div>
+                                </div>
+
+
+                                <a href="javascript:history.back()" class="btn btn-primary">Cerrar</a>
 
                             </div>
                         </div>

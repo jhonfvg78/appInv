@@ -29,7 +29,7 @@
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <!-- Basic Bootstrap Table -->
                         <div class="card">
-                            <h4 class="card-header"><span class="text-muted fw-light">Elementos /</span> Categoría: {{
+                            <h4 class="card-header"><span class="text-muted fw-light"></span>Elementos / Categoría: {{
                                 category }}</h4>
                             <div class="table-responsive text-nowrap">
 
@@ -40,6 +40,7 @@
                                         <thead>
                                             <tr>
                                                 <th>Referencia</th>
+                                                <th>Categoría</th>
                                                 <th>Cantidad</th>
                                                 <th>Disponible</th>
                                                 <th>Ubicación</th>
@@ -53,6 +54,7 @@
 
                                             <tr>
                                                 <td>{{ item.reference }}</td>
+                                                <td>{{ item.category }}</td>
                                                 <td>{{ item.quantity }}</td>
                                                 <td>{{ item.available }}</td>
                                                 <td>{{ item.location }}</td>

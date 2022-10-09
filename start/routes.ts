@@ -31,7 +31,8 @@ Route.get('/', async ({ view }) => {
 
 
 Route.group(() => {
-  Route.get('/item/:reference', 'ItemsController.viewItem')
+  Route.get('/tag/:tag', 'ItemsController.viewTag')
+  Route.get('/reference/:reference', 'ItemsController.viewReference')
   Route.get('/list/:category', 'ItemsController.viewList')
   Route.get('/detail/:id', 'ItemsController.viewDetail')
   Route.get('/create', 'ItemsController.viewCreate')

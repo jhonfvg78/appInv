@@ -10,11 +10,31 @@
         <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
             <!-- Search -->
             <div class="navbar-nav align-items-center">
-                <div class="nav-item d-flex align-items-center">
-                    <i class="bx bx-search fs-4 lh-0"></i>
-                    <input type="text" class="form-control border-0 shadow-none" placeholder="Search..."
-                        aria-label="Search..." />
+                <div class="nav-item d-flex align-items-center me-2">
+                    <i class="bx bx-search fs-4 lh-0 me-2"></i>
+                    <input type="text" class="form-control border shadow-none" placeholder="Search..."
+                        onchange="itemSearch(this.value)" aria-label="Search..." autofocus />
+
+
+                    <select class="form-select ms-2" aria-label="Default select example" id="modeSearch">
+                        <option value="tag" selected>Tag</option>
+                        <option value="reference">Referencia</option>
+                    </select>
+
+
                 </div>
+
+                {{-- <div class="me-2">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                    <label class="btn btn-outline-primary" for="btnradio1">Referencia</label>
+                </div>
+
+                <div class="me-2">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btnradio3">Tag</label>
+                </div> --}}
+
+
             </div>
             <!-- /Search -->
 
@@ -22,21 +42,22 @@
                 <!-- Place this tag where you want the button to render. -->
                 <li class="menu-item me-4 mt-2">
                     <a href="cards-basic.html" class="menu-link">
-                      <span style="font-size: 1.5em; color: rgb(49, 7, 173);">
-                        <i class="fa-solid fa-cart-shopping"></i>               
-                      </span>  
-                      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                        12
-                        <span class="visually-hidden">unread messages</span>
-                      </span>                    
+                        <span style="font-size: 1.5em; color: rgb(49, 7, 173);">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </span>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            12
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
                     </a>
-                   
-                  </li>
-                {{--  <li class="nav-item lh-1 me-3">
+
+                </li>
+
+                {{-- <li class="nav-item lh-1 me-3">
                     <a class="github-button" href="https://github.com/themeselection/sneat-html-admin-template-free"
                         data-icon="octicon-star" data-size="large" data-show-count="true"
                         aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
-                </li>  --}}
+                </li> --}}
 
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -51,7 +72,8 @@
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 me-3">
                                         <div class="avatar avatar-online">
-                                            <img src="/template/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                                            <img src="/template/img/avatars/1.png" alt
+                                                class="w-px-40 h-auto rounded-circle" />
                                         </div>
                                     </div>
                                     <div class="flex-grow-1">
