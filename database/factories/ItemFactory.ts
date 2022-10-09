@@ -7,9 +7,8 @@ export default Factory.define(item, ({ faker }) => {
     reference: faker.word.noun(),
     category: faker.word.adjective(),
     description: faker.lorem.sentence(),
-    quantity: parseInt(faker.random.numeric(5)),
-    location: faker.word.adjective(),
-    maintenance: "NORMAL",
+    quantity: parseInt(faker.random.numeric(3)),      
+    location: faker.word.adjective(),    
     image: faker.image.technics(),
     datasheet: ""
   }

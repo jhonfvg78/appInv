@@ -6,6 +6,14 @@ import ItemValidator from 'App/Validators/ItemValidator'
 export default class ItemsController {
 
   //Views
+
+  public async viewItem({ view ,params}: HttpContextContract) {
+    const items = await Item
+    .query()
+    .whereLike( 'reference',params.reference)
+    return view.render('item/itemList', { items: items ,category: ""})
+  }
+
   public async viewList({ view, params }: HttpContextContract) {
     const items = await Item
       .query() // 👈now have access to all query builder methods
@@ -40,7 +48,7 @@ export default class ItemsController {
     console.log(request.body());
     const payload = await request.validate(ItemValidator);
     await Item.create(payload);
-    response.redirect('/item')
+    response.redirect('/item/list/Ninguna')
   }
 
   public async apiUpdate({ params, request, response }: HttpContextContract) {
@@ -55,7 +63,7 @@ export default class ItemsController {
 
   public async apiDelete({ response, params }: HttpContextContract) {
     await Item.query().where('id', params.id).delete()
-    response.redirect('/item')
+    response.redirect('/item/list/')
   }
 
 

@@ -6,7 +6,7 @@ export default class Item extends BaseModel {
   public id: number
 
   @column()
-  public tag?: string
+  public tag: string 
 
   @column()
   public reference: string
@@ -15,19 +15,16 @@ export default class Item extends BaseModel {
   public category: string
 
   @column()
-  public description?: string
+  public description: string
 
   @column()
   public quantity: number
 
   @column()
-  public location?: string
+  public location: string 
 
   @column()
-  public maintenance: string
-
-  @column()
-  public image?: string
+  public image: string
 
   @column()
   public datasheet?: string

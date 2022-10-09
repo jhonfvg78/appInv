@@ -49,7 +49,7 @@
                   <div class="card mb-4">
 
                     <div class="card-body">                      
-                      <form id="formAccountSettings" action="/item/udpate/{{item.id}}" method="POST">
+                      <form action="/item/udpate/{{item.id}}" method="POST">
                         @if( flashMessages.get('errors.quantity') )
                         <div class="alert alert-danger" id="alert" role="alert">
                           Error
@@ -64,12 +64,8 @@
                           <div class="col">
                             <div class="d-flex align-items-start align-items-sm-center gap-4">
                               <a class="example-image-link" href="{{ item.image }}" data-lightbox="roadtrip">
-                                <img src="{{item.image}}" class="d-block rounded border" height="120" />
+                                <img src="{{item.image}}" class="d-block rounded border" height="120"  id="itemImage"/>
                               </a>
-
-
-
-
                             </div>
                           </div>
                           <div class="col">
@@ -78,7 +74,7 @@
                               <div class="input-group">
                                 <input type="text" class="form-control" id="image" name="image" onchange="updateImage()"
                                   value="{{item.image}}" />
-                                <button class="btn btn-outline-secondary" type="button"
+                                <button class="btn btn-outline-secondary" type="button" onclick="clearImage()"
                                   id="button-addon2">Borrar</button>
                               </div>
                             </div>
@@ -141,16 +137,7 @@
                             <label for="location" class="form-label">Ubicación</label>
                             <input type="text" class="form-control" id="location" name="location"
                               style="text-transform:uppercase" value="{{item.location}}" />
-                          </div>
-
-                          <div class="mb-3 col-md-6">
-                            <label for="maintenance" class="form-label">Estado</label>
-                            <select id="maintenance" name="maintenance" class="form-select"
-                              value="{{item.maintenance}}">
-                              <option selected value="1">Normal</option>
-                              <option value="2">Mantenimiento</option>
-                            </select>
-                          </div>
+                          </div>                         
 
                           <div class="mb-3 col-md">
                             <label for="description" class="form-label">Descripción</label>

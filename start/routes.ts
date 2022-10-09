@@ -31,16 +31,25 @@ Route.get('/', async ({ view }) => {
 
 
 Route.group(() => {
+  Route.get('/item/:reference', 'ItemsController.viewItem')
   Route.get('/list/:category', 'ItemsController.viewList')
   Route.get('/detail/:id', 'ItemsController.viewDetail')
   Route.get('/create', 'ItemsController.viewCreate')
   Route.get('/edit/:id', 'ItemsController.viewEdit')  
   Route.get('/delete/:id', 'ItemsController.viewDelete')  
-  Route.post('/', 'ItemsController.apiStore') 
+  Route.post('/store', 'ItemsController.apiStore') 
   Route.post('/udpate/:id', 'ItemsController.apiUpdate')
   Route.post('/delete/:id', 'ItemsController.apiDelete')
-}).prefix('/item/')
+}).prefix('/item')
 
 
+Route.group(() => {
+  Route.get('/list/', 'CategoriesController.viewList')
+  Route.get('/create', 'CategoriesController.viewCreate')
+  Route.get('/edit/:id', 'CategoriesController.viewEdit')  
+  Route.get('/delete/:id', 'CategoriesController.viewDelete')  
+  Route.post('/store', 'CategoriesController.apiStore') 
+  Route.post('/udpate/:id', 'CategoriesController.apiUpdate')
+  Route.post('/delete/:id', 'CategoriesController.apiDelete')
+}).prefix('/category')
 
-Route.get('/category','CategoriesController.listView')

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/"
+  data-template="vertical-menu-template-free">
+
+@include('partials/head')
+
+<body>
+  <!-- Layout wrapper -->
+  <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-container">
+
+      <!-- Menu -->
+      @include('partials/aside')
+      <!-- / Menu -->
+
+      <!-- Layout container -->
+      <div class="layout-page">
+        <!-- Navbar -->
+        @include('partials/header')
+        <!-- / Navbar -->
+
+        <!-- Content wrapper -->
+        <div class="content-wrapper">
+          <!-- Content -->
+          <div class="container mt-3">
+
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Agregar /</span> Categoría</h4>
+
+              <div class="row">
+                <div class="col-md-12">                 
+                  <div class="card mb-4">
+
+                    <div class="card-body">
+
+                      <form id="formAccountSettings" action="/category/store" method="POST">
+                        <div class="row">
+                          <div class="col">
+                            <div class="d-flex align-items-start align-items-sm-center gap-4">
+                              <img src="/template/img/item/item.png" alt="user-avatar" class="d-block rounded border"
+                                height="120" id="categoryImage" data-lightbox="roadtrip" />
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="mb-3 col-md">
+                              <label for="image" class="form-label">URL Image</label>
+                              <div class="input-group">
+                                <input type="text" class="form-control" id="image" name="image"
+                                  onchange="updateImage()" />
+                                <button class="btn btn-outline-secondary" type="button"
+                                  id="button-addon2">Borrar</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="mb-3 col-md-6">
+                            <label for="name" class="form-label">Nombre</label>
+                            <input class="form-control" type="text" id="name" name="name" autofocus
+                              style="text-transform:uppercase" required />
+                          </div>
+
+
+                          <div class="mb-3 col-md-6">
+                            <label for="description" class="form-label">Descripción</label>
+                            <input class="form-control" type="text" id="description" name="description" autofocus
+                              style="text-transform:uppercase" required />
+                          </div>                            
+
+                        </div>
+
+                        <div class="mt-2">
+                          <button type="submit" class="btn btn-info me-2">Guardar</button>
+                          <a href="javascript:history.back()" class="btn btn-primary">Cancelar</a>
+                        </div>
+
+                      </form>
+
+                    </div>
+                    <!-- /Account -->
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- / Content -->
+            @include('partials/footer')
+            <!-- Footer -->
+
+            <!-- / Footer -->
+
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+    @include('partials/scripts')
+
+    <!-- ScriptItems -->
+    <script src="/pages/category.js"></script>
+</body>
+
+</html>

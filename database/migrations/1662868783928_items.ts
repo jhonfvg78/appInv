@@ -10,9 +10,8 @@ export default class extends BaseSchema {
       table.string('reference')
       table.string('category')      
       table.string('description')
-      table.integer('quantity')
-      table.string('location')
-      table.string('maintenance')      
+      table.integer('quantity')      
+      table.string('location')       
       table.string('image')
       table.string('datasheet')
       

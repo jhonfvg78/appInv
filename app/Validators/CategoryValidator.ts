@@ -1,8 +1,8 @@
-import { schema, CustomMessages, rules } from '@ioc:Adonis/Core/Validator'
+import { schema, CustomMessages ,rules} from '@ioc:Adonis/Core/Validator'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-export default class ItemValidator {
-  constructor(protected ctx: HttpContextContract) { }
+export default class CategoryValidator {
+  constructor(protected ctx: HttpContextContract) {}
 
   /*
    * Define schema to validate the "shape", "type", "formatting" and "integrity" of data.
@@ -24,14 +24,9 @@ export default class ItemValidator {
    *    ```
    */
   public schema = schema.create({
-    tag: schema.string.optional({}, [rules.required()]),
-    reference: schema.string({}, [rules.required()]),
-    category: schema.string({}, [rules.required()]),
-    description: schema.string.optional(),
-    quantity: schema.number([rules.required()]),
-    location: schema.string.optional(),    
+    name: schema.string({}, [rules.required()]),
+    description: schema.string({}, [rules.required()]),
     image: schema.string.optional(),
-    datasheet: schema.string.optional()
   })
 
   /**

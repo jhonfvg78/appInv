@@ -13,9 +13,13 @@ function genId() {
 }
 
 
+function clearImage() {
+    document.getElementById("image").value = "";
+}
+
 function updateImage() {
     let imageInput = document.getElementById("image");
-    let image = document.getElementById("uploadedAvatar");
+    let image = document.getElementById("itemImage");
     if (imageInput.value) image.src = imageInput.value;
 }
 
@@ -51,11 +55,11 @@ function prepareForm(reference) {
 }
 
 $(document).ready(function () {
-    $('#example').DataTable({
+    $('#dataTables').DataTable({
         dom: 'Bfrtip',
-        buttons: [            
+        buttons: [
             'excel',
-            'pdf',   
+            'pdf',
             {
                 text: '<i class="fa-solid fa-list"></i>',
                 action: function (e, dt, node, config) {
@@ -67,11 +71,14 @@ $(document).ready(function () {
                 text: '<i class="fa-regular fa-file"></i>',
                 className: 'btn btn-primary',
                 action: function (e, dt, node, config) {
-                    document.location.href="/item/create"                                 
+                    document.location.href = "/item/create"
                 }
             }
         ]
     });
 });
 
+function isImage(url) {
+    return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
+}
 

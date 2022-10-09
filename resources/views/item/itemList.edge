@@ -27,29 +27,22 @@
                 <div class="content-wrapper">
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
-                        {{-- <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tables /</span> Basic
-                            Tables
-                        </h4> --}}
-                        {{-- <div class="d-flex flex-row-reverse mb-2">
-                            <a href="item/create/" class="btn btn-primary" aria-current="page">Nuevo</a>
-                        </div> --}}
-
                         <!-- Basic Bootstrap Table -->
                         <div class="card">
-                            <h5 class="card-header">Elementos: Categoría/{{ category }}</h5>
+                            <h4 class="card-header"><span class="text-muted fw-light">Elementos /</span> Categoría: {{
+                                category }}</h4>
                             <div class="table-responsive text-nowrap">
 
                                 <div class="container">
-                                    <table id="example"
+                                    <table id="dataTables"
                                         class="table table-striped table-hover table-row-border table-order-column m-3 p-3"
                                         style="width: 100%">
                                         <thead>
                                             <tr>
                                                 <th>Referencia</th>
-                                                <th>Categoría</th>
                                                 <th>Cantidad</th>
+                                                <th>Disponible</th>
                                                 <th>Ubicación</th>
-                                                <th>Estado</th>
                                                 <th>image</th>
                                                 <th>Acciones</th>
                                                 <th>Agregar</th>
@@ -60,14 +53,13 @@
 
                                             <tr>
                                                 <td>{{ item.reference }}</td>
-                                                <td>{{ item.category }}</td>
                                                 <td>{{ item.quantity }}</td>
+                                                <td>{{ item.available }}</td>
                                                 <td>{{ item.location }}</td>
-                                                <td>{{ item.maintenance }}</td>
                                                 <td> <a class="example-image-link" href="{{ item.image }}"
-                                                        data-lightbox="roadtrip">
+                                                        data-lightbox="roadtrip">                                                        
                                                         <img class="rounded float-start" height="50px"
-                                                            src="{{ item.image }}" alt="roadtrip" />
+                                                            src="{{ item.image }}" alt="roadtrip" />                                                        
                                                     </a>
                                                 </td>
                                                 <td>
@@ -99,62 +91,6 @@
                                     </table>
                                 </div>
 
-
-
-
-
-
-                                {{-- <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Referencia</th>
-                                            <th>Cantidad</th>
-                                            <th>Ubicación</th>
-                                            <th>Estado</th>
-                                            <th>image</th>
-                                            <th>Acciones</th>
-                                            <th>Agregar</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="table-border-bottom-0">
-
-                                        @each(item in items)
-
-                                        <tr>
-                                            <td>{{ item.reference }}</td>
-                                            <td>{{ item.quantity }}</td>
-                                            <td>{{ item.location }}</td>
-                                            <td>{{ item.maintenance }}</td>
-                                            <td> <a class="example-image-link" href="{{ item.image }}"
-                                                    data-lightbox="roadtrip"><img class="rounded float-start"
-                                                        height="50px" src="{{ item.image }}" alt="roadtrip" /></a>
-                                            </td>
-                                            <td>
-                                                <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <a href="item/edit/{{item.id}}"
-                                                        class="btn btn-outline-primary btn-sm" aria-current="page"
-                                                        data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        data-bs-title="Editar"><i class="fa-solid fa-file-pen"></i></a>
-                                                    <a href="item/detail/{{item.id}}"
-                                                        class="btn btn-outline-primary btn-sm" aria-current="page"
-                                                        data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        data-bs-title="Detalles"><i
-                                                            class="fa-solid fa-circle-info"></i></a>
-                                                    <a href="item/delete/{{item.id}}"
-                                                        class="btn btn-outline-primary btn-sm" aria-current="page"
-                                                        data-bs-toggle="tooltip" data-bs-placement="top"
-                                                        data-bs-title="Eliminar"><i class="fa-solid fa-trash"></i></a>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a href="itemDelete?item.id" class="btn btn-outline-info btn-sm"
-                                                    aria-current="page"><i class="fa-solid fa-circle-plus"></i></a>
-                                            </td>
-                                        </tr>
-                                        @end
-
-                                    </tbody>
-                                </table> --}}
                             </div>
                         </div>
                         <!--/ Basic Bootstrap Table -->
@@ -186,7 +122,6 @@
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
 
-
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">CATEGORÍAS</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -206,10 +141,12 @@
                                         <h6 class="mb-0"></h6>
                                     </div>
                                     <div class="user-progress d-flex align-items-center gap-1">
-                                        {{--  <span class="badge bg-primary rounded-pill">{{category.quantity}}</span>  --}}
-                                    
-                                            {{--  <a href="/item/{{category.name}}" class="btn btn-primary" aria-current="page">S</a>  --}}
-                                        
+                                        {{-- <span class="badge bg-primary rounded-pill">{{category.quantity}}</span>
+                                        --}}
+
+                                        {{-- <a href="/item/{{category.name}}" class="btn btn-primary"
+                                            aria-current="page">S</a> --}}
+
                                     </div>
                                 </div>
                             </li>
@@ -229,9 +166,10 @@
                                     </div>
                                     <div class="user-progress d-flex align-items-center gap-1">
                                         <span class="badge bg-primary rounded-pill">{{category.quantity}}</span>
-                                    
-                                            {{--  <a href="/item/{{category.name}}" class="btn btn-primary" aria-current="page">S</a>  --}}
-                                        
+
+                                        {{-- <a href="/item/{{category.name}}" class="btn btn-primary"
+                                            aria-current="page">S</a> --}}
+
                                     </div>
                                 </div>
                             </li>
