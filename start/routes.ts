@@ -29,7 +29,6 @@ Route.get('/', async ({ view }) => {
   return view.render('index')
 })
 
-
 Route.group(() => {
   Route.get('/tag/:tag', 'ItemsController.viewTag')
   Route.get('/reference/:reference', 'ItemsController.viewReference')
@@ -53,4 +52,10 @@ Route.group(() => {
   Route.post('/udpate/:id', 'CategoriesController.apiUpdate')
   Route.post('/delete/:id', 'CategoriesController.apiDelete')
 }).prefix('/category')
+
+Route.group(() => {   
+  Route.get('/list/', 'CartsController.viewList').as('cart.show') 
+  Route.get('/store/:id', 'CartsController.apiStore')   
+  Route.post('/delete/:id', 'CartsController.apiDelete')
+}).prefix('/cart')
 

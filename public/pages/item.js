@@ -62,17 +62,17 @@ $(document).ready(function () {
                 extend: 'excel',
                 text: '<i class="fa-solid fa-file-excel"></i>',
                 titleAttr: 'Exportar a Excel',
-                className: 'btn btn-info',
+                className: 'btn btn-info btn-sm',
             },
             {
                 extend: 'pdf',
                 text: '<i class="fa-solid fa-file-pdf"></i> ',
                 titleAttr: 'Exportar a PDF',
-                className: 'btn btn-info',
+                className: 'btn btn-info btn-sm',
             },
             {
                 text: '<i class="fa-solid fa-list"></i>',
-                className: 'btn btn-info',
+                className: 'btn btn-info btn-sm',
                 titleAttr: 'Categorías',
                 action: function (e, dt, node, config) {
                     $('#categoryModal').modal('show');
@@ -80,7 +80,7 @@ $(document).ready(function () {
             },
             {
                 text: '<i class="fa-regular fa-file"></i>',
-                className: 'btn btn-info',
+                className: 'btn btn-info btn-sm',
                 titleAttr: 'Agregar Elemento',
                 action: function (e, dt, node, config) {
                     document.location.href = "/item/create"

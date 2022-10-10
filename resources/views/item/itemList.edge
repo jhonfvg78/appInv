@@ -29,11 +29,11 @@
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <!-- Basic Bootstrap Table -->
                         <div class="card">
-                            <h4 class="card-header"><span class="text-muted fw-light"></span>Elementos / Categoría: {{
+                            <h4 class="card-header"><span class="text-muted fw-light"> <span style="color: Tomato;">
+                                        <i class="menu-icon fa-solid fa-layer-group"></i>
+                                    </span>
+                                </span>Elementos / Categoría: {{
                                 category }}</h4>
-
-
-
 
                             <div class="table-responsive text-nowrap">
 
@@ -63,9 +63,9 @@
                                                 <td>{{ item.available }}</td>
                                                 <td>{{ item.location }}</td>
                                                 <td> <a class="example-image-link" href="{{ item.image }}"
-                                                        data-lightbox="roadtrip">                                                        
+                                                        data-lightbox="roadtrip">
                                                         <img class="rounded float-start" height="50px"
-                                                            src="{{ item.image }}" alt="roadtrip" />                                                        
+                                                            src="{{ item.image }}" alt="roadtrip" />
                                                     </a>
                                                 </td>
                                                 <td>
@@ -88,8 +88,37 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <a href="itemDelete?item.id" class="btn btn-outline-info btn-sm"
+                                                    {{-- <button type="button" class="btn btn-primary btn-sm"
+                                                        onclick="test({{item.id}})">+</button> --}}
+
+                                                    <a href="/cart/store/{{item.id}}"
+                                                        class="btn btn-outline-info btn-sm" onclick="test(item)"
                                                         aria-current="page"><i class="fa-solid fa-circle-plus"></i></a>
+                                                    <script>
+                                                        function test(id) {
+                                                            alert(id)
+                                                            // var url = '/cart/store';
+                                                           
+                                                            // var data = {                                                                
+                                                            //     reference: {{item.reference}},
+                                                            //     quantity: 1,
+                                                            //     image: {{item.image}}
+                                                            // };
+
+                                                            // fetch(url, {
+                                                            // method: 'POST', // or 'PUT'
+                                                            // body: JSON.stringify(data), // data can be `string` or {object}!
+                                                            // headers:{
+                                                            //     'Content-Type': 'application/json'
+                                                            // }
+                                                            // }).then(res => res.json())
+                                                            // .catch(error => console.error('Error:', error))
+                                                            // .then(response => console.log('Success:', response));
+                                                        }
+                                                       
+                                                    </script>
+
+
                                                 </td>
                                             </tr>
                                             @end
@@ -173,8 +202,9 @@
                                     <div class="user-progress d-flex align-items-center gap-1">
                                         <span style="font-size: 1.5em; color: rgb(14, 173, 86);">
                                             <i class="fa-solid fa-square-check"></i>
-                                          </span>
-                                        {{--  <span class="badge bg-primary rounded-pill">{{category.quantity}}</span>  --}}
+                                        </span>
+                                        {{-- <span class="badge bg-primary rounded-pill">{{category.quantity}}</span>
+                                        --}}
 
                                         {{-- <a href="/item/{{category.name}}" class="btn btn-primary"
                                             aria-current="page">S</a> --}}

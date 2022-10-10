@@ -1,4 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Database from '@ioc:Adonis/Lucid/Database'
+import Cart from 'App/Models/Cart'
 import Category from 'App/Models/Category'
 import Item from 'App/Models/item'
 import ItemValidator from 'App/Validators/ItemValidator'
@@ -6,7 +8,6 @@ import ItemValidator from 'App/Validators/ItemValidator'
 export default class ItemsController {
 
   //Views
-
   public async viewTag({ view, params }: HttpContextContract) {
     const items = await Item
       .query()
@@ -24,11 +25,19 @@ export default class ItemsController {
   }
 
   public async viewList({ view, params }: HttpContextContract) {
+
+    const carts = await Cart.all()
+    let totalItems: number = 0
+
+    carts.forEach(cart => {
+      totalItems += cart.quantity
+    });
+
     const items = await Item
       .query() // 👈now have access to all query builder methods
       .where('category', params.category)
     const categories = await Category.all()
-    return view.render('item/itemList', { items: items, categories: categories, category: params.category })
+    return view.render('item/itemList', { items: items, categories: categories, category: params.category, totalItems: totalItems })
   }
 
   public async viewDetail({ params, view }: HttpContextContract) {
@@ -54,7 +63,6 @@ export default class ItemsController {
 
   //Api
   public async apiStore({ request, response }: HttpContextContract) {
-    console.log(request.body());
     const payload = await request.validate(ItemValidator);
     await Item.create(payload);
     response.redirect('/item/list/Ninguna')

@@ -23,15 +23,14 @@
                 <!-- / Navbar -->
 
                 <!-- Content wrapper -->
-
                 <div class="content-wrapper">
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <!-- Basic Bootstrap Table -->
                         <div class="card">
-                            <h4 class="card-header"><span class="text-muted fw-light"></span>Elementos / Categoría: {{
-                                category }}</h4>
-
+                            <h4 class="card-header"><span class="text-muted fw-light"><span style="color: rgb(49, 7, 173);">
+                                <i class="menu-icon fa-solid fa-cart-shopping"></i>               
+                              </span></span>Carrito</h4>
 
                             <div class="table-responsive text-nowrap">
 
@@ -42,56 +41,41 @@
                                         <thead>
                                             <tr>
                                                 <th>Referencia</th>
-                                                <th>Categoría</th>
                                                 <th>Cantidad</th>
-                                                <th>Disponible</th>
-                                                <th>Ubicación</th>
                                                 <th>image</th>
-                                                <th>Acciones</th>
-                                                <th>Agregar</th>
+                                                <th>Eliminar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @each(item in items)
+                                            @each(cart in carts)
 
                                             <tr>
-                                                <td>{{ item.reference }}</td>
-                                                <td>{{ item.category }}</td>
-                                                <td>{{ item.quantity }}</td>
-                                                <td>{{ item.available }}</td>
-                                                <td>{{ item.location }}</td>
-                                                <td> <a class="example-image-link" href="{{ item.image }}"
-                                                        data-lightbox="roadtrip">                                                        
+                                                <td>{{ cart.reference }}</td>
+                                                <td>
+                                                    <input type="number" class="form-control" id="image" name="image" 
+                                                        value="{{ cart.quantity }}" style="width: 100px"/>
+                                                </td>
+
+
+                                                <td> <a class="example-image-link" href="{{ cart.image }}"
+                                                        data-lightbox="roadtrip">
                                                         <img class="rounded float-start" height="50px"
-                                                            src="{{ item.image }}" alt="roadtrip" />                                                        
+                                                            src="{{ cart.image }}" alt="roadtrip" />
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                                        <a href="/item/edit/{{item.id}}"
-                                                            class="btn btn-outline-primary btn-sm" aria-current="page"
-                                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            data-bs-title="Editar"><i
-                                                                class="fa-solid fa-file-pen"></i></a>
-                                                        <a href="/item/detail/{{item.id}}"
-                                                            class="btn btn-outline-primary btn-sm" aria-current="page"
-                                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            data-bs-title="Detalles"><i
-                                                                class="fa-solid fa-circle-info"></i></a>
-                                                        <a href="/item/delete/{{item.id}}"
-                                                            class="btn btn-outline-primary btn-sm" aria-current="page"
-                                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            data-bs-title="Eliminar"><i
-                                                                class="fa-solid fa-trash"></i></a>
-                                                    </div>
-                                                </td>
-                                                <td>
                                                     <a href="itemDelete?item.id" class="btn btn-outline-info btn-sm"
-                                                        aria-current="page"><i class="fa-solid fa-circle-plus"></i></a>
+                                                        aria-current="page"><i class="fa-solid fa-trash"></i></a>
                                                 </td>
                                             </tr>
                                             @end
                                         </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th colspan="4" style="text-align:right">Total:</th>
+                                                <th></th>
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
 
@@ -110,6 +94,7 @@
 
                     <div class="content-backdrop fade"></div>
                 </div>
+
                 <!-- Content wrapper -->
             </div>
             <!-- / Layout page -->
@@ -119,86 +104,12 @@
         <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
-
-
-    <!-- Modal -->
-    <div class="modal fade " id="categoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">CATEGORÍAS</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                    <div class="list-group">
-
-                        <a href="/item/list/Ninguna" class="list-group-item list-group-item-action">
-                            <li class="d-flex pb-1">
-                                <div class="avatar flex-shrink-0 me-3">
-                                    <img src="/template/img/icons/brands/asana.png" class="rounded" />
-                                </div>
-                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                    <div class="me-2">
-                                        <small class="text-muted d-block mb-1">Ninguna</small>
-                                        <h6 class="mb-0"></h6>
-                                    </div>
-                                    <div class="user-progress d-flex align-items-center gap-1">
-                                        {{-- <span class="badge bg-primary rounded-pill">{{category.quantity}}</span>
-                                        --}}
-
-                                        {{-- <a href="/item/{{category.name}}" class="btn btn-primary"
-                                            aria-current="page">S</a> --}}
-
-                                    </div>
-                                </div>
-                            </li>
-                        </a>
-
-                        @each(category in categories)
-
-                        <a href="/item/list/{{category.name}}" class="list-group-item list-group-item-action">
-                            <li class="d-flex pb-1">
-                                <div class="avatar flex-shrink-0 me-3">
-                                    <img src="{{category.image}}" class="rounded" />
-                                </div>
-                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                    <div class="me-2">
-                                        <small class="text-muted d-block mb-1">{{category.name}}</small>
-                                        <h6 class="mb-0">{{category.description}}</h6>
-                                    </div>
-                                    <div class="user-progress d-flex align-items-center gap-1">
-                                        <span style="font-size: 1.5em; color: rgb(14, 173, 86);">
-                                            <i class="fa-solid fa-square-check"></i>
-                                          </span>
-                                        {{--  <span class="badge bg-primary rounded-pill">{{category.quantity}}</span>  --}}
-
-                                        {{-- <a href="/item/{{category.name}}" class="btn btn-primary"
-                                            aria-current="page">S</a> --}}
-
-                                    </div>
-                                </div>
-                            </li>
-                        </a>
-
-                        @end
-                    </div>
-
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     @include('partials/scripts')
 
     <!-- ScriptItems -->
-    <script src="/pages/item.js"></script>
+    <script src="/pages/cart.js"></script>
 </body>
 
 </html>
