@@ -40,8 +40,18 @@
                                     <div class="input-group">
                                         <input type="text" class="form-control" id="inputdatasheet" name="datasheet" value="{{item.datasheet}}"
                                             onchange="updateImage()" />
-                                        <button class="btn btn-outline-secondary" type="button" onclick="openDataSheet()"
-                                            id="button-addon2">Abrir</button>
+                                        <button class="btn btn-info" type="button" onclick="openDataSheet()"
+                                            id="button-addon2"><i class="fa-solid fa-file-excel"></i></button>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 col-md">
+                                    <label for="datasheet" class="form-label">Drive</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="inputdrive" name="datasheet" value="{{item.datasheet}}"
+                                            onchange="updateImage()" />
+                                        <button class="btn btn-info" type="button" onclick="openDrive()"
+                                            id="button-addon2"><i class="fa-brands fa-google-drive"></i></i></button>
                                     </div>
                                 </div>
 

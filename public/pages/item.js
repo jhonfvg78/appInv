@@ -75,7 +75,7 @@ $(document).ready(function () {
                 className: 'btn btn-info',
                 titleAttr: 'Categorías',
                 action: function (e, dt, node, config) {
-                    $('#exampleModal').modal('show');
+                    $('#categoryModal').modal('show');
                 }
             },
             {
@@ -99,5 +99,10 @@ function openDataSheet() {
     window.open(dataSheetInput);
 }
 
+
+function openDrive() {
+    let dataSheetInput = document.getElementById("inputdrive").value;
+    window.open(dataSheetInput);
+}
 
 

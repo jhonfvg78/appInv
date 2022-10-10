@@ -31,6 +31,10 @@
                         <div class="card">
                             <h4 class="card-header"><span class="text-muted fw-light"></span>Elementos / Categoría: {{
                                 category }}</h4>
+
+
+
+
                             <div class="table-responsive text-nowrap">
 
                                 <div class="container">
@@ -120,7 +124,7 @@
 
 
     <!-- Modal -->
-    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade " id="categoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
 
@@ -167,7 +171,10 @@
                                         <h6 class="mb-0">{{category.description}}</h6>
                                     </div>
                                     <div class="user-progress d-flex align-items-center gap-1">
-                                        <span class="badge bg-primary rounded-pill">{{category.quantity}}</span>
+                                        <span style="font-size: 1.5em; color: rgb(14, 173, 86);">
+                                            <i class="fa-solid fa-square-check"></i>
+                                          </span>
+                                        {{--  <span class="badge bg-primary rounded-pill">{{category.quantity}}</span>  --}}
 
                                         {{-- <a href="/item/{{category.name}}" class="btn btn-primary"
                                             aria-current="page">S</a> --}}
