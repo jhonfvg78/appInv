@@ -28,12 +28,12 @@
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <!-- Basic Bootstrap Table -->
                         <div class="card">
-                            <h4 class="card-header"><span class="text-muted fw-light"><span style="color: rgb(49, 7, 173);">
-                                <i class="menu-icon fa-solid fa-cart-shopping"></i>               
-                              </span></span>Carrito</h4>
+                            <h4 class="card-header"><span class="text-muted fw-light"><span
+                                        style="color: rgb(49, 7, 173);">
+                                        <i class="menu-icon fa-solid fa-cart-shopping"></i>
+                                    </span></span>Carrito / {{totalItems}}</h4>
 
                             <div class="table-responsive text-nowrap">
-
                                 <div class="container">
                                     <table id="dataTables"
                                         class="table table-striped table-hover table-row-border table-order-column m-3 p-3"
@@ -41,8 +41,8 @@
                                         <thead>
                                             <tr>
                                                 <th>Referencia</th>
-                                                <th>Cantidad</th>
                                                 <th>image</th>
+                                                <th>Cantidad</th>                                                
                                                 <th>Eliminar</th>
                                             </tr>
                                         </thead>
@@ -50,18 +50,16 @@
                                             @each(cart in carts)
 
                                             <tr>
-                                                <td>{{ cart.reference }}</td>
-                                                <td>
-                                                    <input type="number" class="form-control" id="image" name="image" 
-                                                        value="{{ cart.quantity }}" style="width: 100px"/>
-                                                </td>
-
-
+                                                <td>{{ cart.reference }}</td>                                               
                                                 <td> <a class="example-image-link" href="{{ cart.image }}"
                                                         data-lightbox="roadtrip">
                                                         <img class="rounded float-start" height="50px"
                                                             src="{{ cart.image }}" alt="roadtrip" />
                                                     </a>
+                                                </td>
+                                                <td>
+                                                    <input type="number" class="form-control" id="image" name="image"
+                                                        value="{{ cart.quantity }}" style="width: 80px" />
                                                 </td>
                                                 <td>
                                                     <a href="itemDelete?item.id" class="btn btn-outline-info btn-sm"
@@ -70,12 +68,6 @@
                                             </tr>
                                             @end
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th colspan="4" style="text-align:right">Total:</th>
-                                                <th></th>
-                                            </tr>
-                                        </tfoot>
                                     </table>
                                 </div>
 
@@ -104,7 +96,7 @@
         <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
-    
+
 
     @include('partials/scripts')
 

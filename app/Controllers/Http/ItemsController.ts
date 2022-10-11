@@ -25,16 +25,13 @@ export default class ItemsController {
   }
 
   public async viewList({ view, params }: HttpContextContract) {
-
     const carts = await Cart.all()
     let totalItems: number = 0
-
-    carts.forEach(cart => {
+    carts.forEach(cart => {      
       totalItems += cart.quantity
     });
-
     const items = await Item
-      .query() // 👈now have access to all query builder methods
+      .query() 
       .where('category', params.category)
     const categories = await Category.all()
     return view.render('item/itemList', { items: items, categories: categories, category: params.category, totalItems: totalItems })
