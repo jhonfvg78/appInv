@@ -16,7 +16,7 @@ export default class CartsController {
   }
 
   //Api
-  public async apiStore({ params, response, view }: HttpContextContract) {
+  public async apiStore({ params, response }: HttpContextContract) {
     const item = await Item.find(params.id)
     if (item) {
       const cart = await Cart.find(params.id)
@@ -27,8 +27,8 @@ export default class CartsController {
           response.redirect().back()
         }
         else {
-          
-         
+
+          response.redirect().back()
         }
       }
       else {

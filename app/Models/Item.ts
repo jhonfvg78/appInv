@@ -21,6 +21,9 @@ export default class Item extends BaseModel {
   public quantity: number
 
   @column()
+  public available: number
+
+  @column()
   public location: string 
 
   @column()

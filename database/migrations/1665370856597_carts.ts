@@ -8,7 +8,7 @@ export default class extends BaseSchema {
       table.increments('id')
       table.string('reference')
       table.integer('quantity')  
-      table.string('image')
+      table.text('image')
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

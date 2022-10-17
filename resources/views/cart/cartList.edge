@@ -22,16 +22,57 @@
                 @include('partials/header')
                 <!-- / Navbar -->
 
+
+
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <!-- Basic Bootstrap Table -->
                         <div class="card">
+
+
+
                             <h4 class="card-header"><span class="text-muted fw-light"><span
                                         style="color: rgb(49, 7, 173);">
                                         <i class="menu-icon fa-solid fa-cart-shopping"></i>
                                     </span></span>Carrito / {{totalItems}}</h4>
+
+                            <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+                                id="layout-navbar">
+                               
+
+                                <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+                                    <!-- Search -->
+                                    <div class="navbar-nav align-items-center">
+                                        <div class="nav-item d-flex align-items-center me-2">
+                                            <span style="font-size: 1.5em; color: Dodgerblue;">
+                                                <i class="fa-solid fa-tag me-2"></i>
+                                              </span>
+
+                                            
+                                            <input type="text" class="form-control border shadow-none"
+                                                placeholder="Agregar Tag" onchange="itemSearch(this.value)"
+                                                aria-label="Search..." autofocus />
+                                        </div>
+
+                                    </div>
+                                    <!-- /Search -->
+
+                                    <ul class="navbar-nav flex-row align-items-center ms-auto">
+                                        <!-- Place this tag where you want the button to render. -->
+                                        <li class="menu-item me-2">
+                                            <button type="button" class="btn btn-primary">Limpiar</button> 
+                                        </li>
+
+                                        <!-- User -->
+                                        <li class="nav-item ">
+                                            <button type="button" class="btn btn-success">Asignar</button>                                   
+                                        </li>
+                                        <!--/ User -->
+                                    </ul>
+                                </div>
+                            </nav>
 
                             <div class="table-responsive text-nowrap">
                                 <div class="container">
@@ -42,7 +83,7 @@
                                             <tr>
                                                 <th>Referencia</th>
                                                 <th>image</th>
-                                                <th>Cantidad</th>                                                
+                                                <th>Cantidad</th>
                                                 <th>Eliminar</th>
                                             </tr>
                                         </thead>
@@ -50,11 +91,11 @@
                                             @each(cart in carts)
 
                                             <tr>
-                                                <td>{{ cart.reference }}</td>                                               
+                                                <td>{{ cart.reference }}</td>
                                                 <td> <a class="example-image-link" href="{{ cart.image }}"
                                                         data-lightbox="roadtrip">
                                                         <img class="rounded float-start" height="50px"
-                                                            src="{{ cart.image }}" alt="roadtrip" />
+                                                            src="{{ cart.image }}" onerror="imageError(event)" />
                                                     </a>
                                                 </td>
                                                 <td>
@@ -62,8 +103,15 @@
                                                         value="{{ cart.quantity }}" style="width: 80px" />
                                                 </td>
                                                 <td>
-                                                    <a href="itemDelete?item.id" class="btn btn-outline-info btn-sm"
-                                                        aria-current="page"><i class="fa-solid fa-trash"></i></a>
+                                                    <form id="formId" action="/cart/delete/{{cart.id}}" method="POST">
+
+                                                        <button type="submit" class="btn btn-outline-info btn-sm"><i
+                                                                class="fa-solid fa-trash"></i></button>
+
+
+                                                    </form>
+
+
                                                 </td>
                                             </tr>
                                             @end

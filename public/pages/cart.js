@@ -3,3 +3,8 @@ $(document).ready(function () {
         dom: 'rtip'
     });
 });
+
+function imageError(event) {
+    event.target.src = "/template/img/item/item.png"
+    event.onerror = null
+}

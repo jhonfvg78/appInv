@@ -27,11 +27,11 @@ export default class ItemsController {
   public async viewList({ view, params }: HttpContextContract) {
     const carts = await Cart.all()
     let totalItems: number = 0
-    carts.forEach(cart => {      
+    carts.forEach(cart => {
       totalItems += cart.quantity
     });
     const items = await Item
-      .query() 
+      .query()
       .where('category', params.category)
     const categories = await Category.all()
     return view.render('item/itemList', { items: items, categories: categories, category: params.category, totalItems: totalItems })
@@ -61,7 +61,11 @@ export default class ItemsController {
   //Api
   public async apiStore({ request, response }: HttpContextContract) {
     const payload = await request.validate(ItemValidator);
-    await Item.create(payload);
+    const newItem = {
+      ...payload,
+      available: payload.quantity
+    }
+    await Item.create(newItem);
     response.redirect('/item/list/Ninguna')
   }
 

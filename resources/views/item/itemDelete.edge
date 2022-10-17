@@ -29,8 +29,8 @@
                             <h5 class="card-header">{{item.reference}}</h5>
                             <div class="card-body">
                                 <div class="d-flex align-items-start align-items-sm-center gap-4">
-                                    <img src="{{ item.image }}" alt="user-avatar" class="d-block rounded border"
-                                        height="120" id="uploadedAvatar" />
+                                    <img src="{{ item.image }}"  class="d-block rounded border"
+                                        height="120" onerror="imageError(event)"/>
                                 </div>                                
                                 <div class="mb-3 col-md-6">
                                     <label for="location" class="form-label">VALIDAR REFERENCIA</label>

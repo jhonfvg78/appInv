@@ -54,7 +54,7 @@ Route.group(() => {
 }).prefix('/category')
 
 Route.group(() => {   
-  Route.get('/list/', 'CartsController.viewList').as('cart.show') 
+  Route.get('/list/', 'CartsController.viewList')
   Route.get('/store/:id', 'CartsController.apiStore')   
   Route.post('/delete/:id', 'CartsController.apiDelete')
 }).prefix('/cart')

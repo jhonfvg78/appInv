@@ -1,3 +1,27 @@
+//page Create
+
+function clearUrlImage() {
+    document.getElementById("image").value = "";
+    let image = document.getElementById("itemImage");
+    let imageTemplate = document.getElementById("imageTemplate");
+    image.src = imageTemplate.src;
+}
+
+function clearUrlDatasheet() {
+    document.getElementById("datasheet").value = "";   
+}
+
+function updateImage() {
+    let imageInput = document.getElementById("image");
+    let image = document.getElementById("itemImage");
+    if (imageInput.value) image.src = imageInput.value;
+}
+
+function imageError(event) {
+    event.target.src = "/template/img/item/item.png"
+    event.onerror = null
+}
+
 function dec2hex(dec) {
     return dec.toString(16).padStart(2, "0")
 }
@@ -11,18 +35,6 @@ function generateId(len) {
 function genId() {
     document.getElementById('tag').value = generateId(20);
 }
-
-
-function clearImage() {
-    document.getElementById("image").value = "";
-}
-
-function updateImage() {
-    let imageInput = document.getElementById("image");
-    let image = document.getElementById("itemImage");
-    if (imageInput.value) image.src = imageInput.value;
-}
-
 
 function prepareForm(reference) {
     let input = document.getElementById("confirm_delete");

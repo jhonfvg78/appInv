@@ -20,23 +20,7 @@
                         <option value="tag" selected>Tag</option>
                         <option value="reference">Referencia</option>
                     </select>
-
-
-                </div>
-
-                {{-- <div class="me-2">
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                    <label class="btn btn-outline-primary" for="btnradio1">Referencia</label>
-                </div>
-
-                <div class="me-2">
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="btnradio3">Tag</label>
-                </div> --}}
-
-                 <!-- LIGHT SWITCH -->
- 
-
+                </div>    
 
             </div>
             <!-- /Search -->
@@ -44,7 +28,7 @@
             <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Place this tag where you want the button to render. -->
                 <li class="menu-item me-4 mt-2">
-                    <a href="{{route('cart.show')}}" class="menu-link">
+                    <a href="/cart/list" class="menu-link">
                         <span style="font-size: 1.5em; color: rgb(49, 7, 173);">
                             <i class="fa-solid fa-cart-shopping"></i>
                         </span>
@@ -54,13 +38,7 @@
                         </span>
                     </a>
 
-                </li>
-
-                {{-- <li class="nav-item lh-1 me-3">
-                    <a class="github-button" href="https://github.com/themeselection/sneat-html-admin-template-free"
-                        data-icon="octicon-star" data-size="large" data-show-count="true"
-                        aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">Star</a>
-                </li> --}}
+                </li>             
 
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -126,5 +104,7 @@
             </ul>
         </div>
     </nav>
+
+    <img src="/template/img/item/item.png" id="imageTemplate" hidden />
 
 </div>

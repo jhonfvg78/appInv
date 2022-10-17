@@ -30,21 +30,11 @@
                   <div class="card mb-4">
                     <div class="card-body">
                       <form action="/item/store" method="POST">
-                        @if( flashMessages.get('errors.quantity') )
-                        <div class="alert alert-danger" id="alert" role="alert">
-                          Error
-                        </div>
-                        <script type="text/javascript">
-                          setTimeout(function () {
-                            $('#alert').alert('close');
-                          }, 1000);
-                        </script>
-                        @end
                         <div class="row">
                           <div class="col">
                             <div class="d-flex align-items-start align-items-sm-center gap-4">
-                              <img src="/template/img/item/item.png" alt="user-avatar" class="d-block rounded border"
-                                height="120" id="itemImage" data-lightbox="roadtrip" />
+                              <img src="/template/img/item/item.png" class="d-block rounded border" height="120"
+                                id="itemImage" data-lightbox="roadtrip" onerror="imageError(event)" />
                             </div>
                           </div>
                           <div class="col">
@@ -53,8 +43,8 @@
                               <div class="input-group">
                                 <input type="text" class="form-control" id="image" name="image"
                                   onchange="updateImage()" />
-                                <button class="btn btn-outline-secondary" type="button"
-                                  id="button-addon2">Borrar</button>
+                                <button class="btn btn-outline-secondary" type="button" onclick="clearUrlImage()"><i
+                                    class="fa-solid fa-trash"></i></button>
                               </div>
                             </div>
 
@@ -63,8 +53,8 @@
                               <div class="input-group">
                                 <input type="text" class="form-control" id="datasheet" name="datasheet"
                                   onchange="updateImage()" />
-                                <button class="btn btn-outline-secondary" type="button" onclick="clearImage()"
-                                  id="button-addon2">Borrar</button>
+                                <button class="btn btn-outline-secondary" type="button" onclick="clearUrlDatasheet()"><i
+                                    class="fa-solid fa-trash"></i></button>
                               </div>
                             </div>
                           </div>
@@ -77,7 +67,7 @@
                               <input class="form-control" type="text" id="tag" name="tag" autofocus
                                 style="text-transform:uppercase" required />
                               <button class="btn btn-outline-secondary" type="button" id="button-addon2"
-                                onclick="genId()">Generar</button>
+                                onclick="genId()"><i class="fa-solid fa-tag"></i></button>
                             </div>
 
                           </div>
@@ -91,8 +81,10 @@
                           <div class="mb-3 col-md-6">
                             <label for="category" class="form-label">Categoría</label>
                             <div class="input-group">
-                              <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i
-                                  class='bx bx-message-square-add'></i></i></button>
+                              <a class="btn btn-outline-secondary" href="/category/list" role="button"><i
+                                  class="fa-solid fa-list"></i></a>
+                              {{-- <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i
+                                  class="fa-solid fa-list"></i></button> --}}
                               <select id="category" name="category" class="form-select">
                                 <option>Ninguna</option>
                                 @each(category in categories)
