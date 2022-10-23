@@ -26,7 +26,7 @@ import ItemFactory from 'Database/factories/ItemFactory'
 Route.get('/', async ({ view }) => {
   //  await ItemFactory.createMany(2000)  
   // await CategoryFactory.createMany(50)
-  return view.render('index')
+  return view.render('auth/register')
 })
 
 Route.group(() => {
@@ -41,7 +41,6 @@ Route.group(() => {
   Route.post('/udpate/:id', 'ItemsController.apiUpdate')
   Route.post('/delete/:id', 'ItemsController.apiDelete')
 }).prefix('/item')
-
 
 Route.group(() => {
   Route.get('/list/', 'CategoriesController.viewList')

@@ -5,7 +5,7 @@
  * file.
  */
 
-import { AuthConfig } from '@ioc:Adonis/Addons/Auth'
+import type { AuthConfig } from '@ioc:Adonis/Addons/Auth'
 
 /*
 |--------------------------------------------------------------------------
@@ -77,7 +77,7 @@ const authConfig: AuthConfig = {
         | that time.
         |
         */
-        model: () => import('App/Models/user'),
+        model: () => import('App/Models/User'),
       },
     },
   },
