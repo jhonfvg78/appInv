@@ -29,12 +29,11 @@
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <!-- Basic Bootstrap Table -->
                         <div class="card">
-                            <h4 class="card-header"><span class="text-muted fw-light"> <span style="color: Tomato;">
-                                        <i class="menu-icon fa-solid fa-layer-group"></i>
+                            <h4 class="card-header"><span class="text-muted fw-light">
+                                    <span style="color: rgb(41, 14, 241);">
+                                        <i class="menu-icon fa-solid fa-user"></i>
                                     </span>
-                                </span>Elementos / Categoría: {{
-                                category }}</h4>
-
+                                </span>Usuarios</h4>
                             <div class="table-responsive text-nowrap">
 
                                 <div class="container">
@@ -43,54 +42,51 @@
                                         style="width: 100%">
                                         <thead>
                                             <tr>
-                                                <th>Referencia</th>
-                                                <th>Categoría</th>
-                                                <th>Cantidad</th>
-                                                <th>Disponible</th>
-                                                <th>Ubicación</th>
-                                                <th>image</th>
+                                                <th>Nombres</th>
+                                                <th>Apellidos</th>
+                                                {{-- <th>Teléfono</th>
+                                                <th>Email</th> --}}
+                                                <th>Grupo</th>
+                                                <th>Foto</th>
                                                 <th>Acciones</th>
-                                                <th>Agregar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @each(item in items)
+                                            @each(user in users)
 
                                             <tr>
-                                                <td>{{ item.reference }}</td>
-                                                <td>{{ item.category }}</td>
-                                                <td>{{ item.quantity }}</td>
-                                                <td>{{ item.available }}</td>
-                                                <td>{{ item.location }}</td>
-                                                <td> <a class="example-image-link" href="{{ item.image }}"
+                                                <td>{{ user.name }}</td>
+                                                <td>{{ user.lastname }}</td>
+                                                {{-- <td>{{ user.phone }}</td>
+                                                <td>{{ user.email }}</td> --}}
+                                                <td>{{ user.group }}</td>
+                                                <td> <a class="example-image-link" href="{{ user.photo }}"
                                                         data-lightbox="roadtrip">
                                                         <img class="rounded float-start" height="50px"
-                                                            onerror="imageError(event)" src="{{ item.image }}" />
+                                                            onerror="imageError(event)" src="{{ user.photo }}" />
                                                     </a>
                                                 </td>
                                                 <td>
                                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                                        <a href="/item/edit/{{item.id}}"
+                                                        <a href="/user/edit/{{user.id}}"
                                                             class="btn btn-outline-primary btn-sm" aria-current="page"
                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                             data-bs-title="Editar"><i
                                                                 class="fa-solid fa-file-pen"></i></a>
-                                                        <a href="/item/detail/{{item.id}}"
+                                                        <a href="/user/detail/{{user.id}}"
                                                             class="btn btn-outline-primary btn-sm" aria-current="page"
                                                             data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            data-bs-title="Detalles"><i
-                                                                class="fa-solid fa-circle-info"></i></a>
-                                                        <a href="/item/delete/{{item.id}}"
+                                                            data-bs-title="Préstamos"><i class="fa-solid fa-list"></i></a>
+                                                        <a href="/user/delete/{{user.id}}"
                                                             class="btn btn-outline-primary btn-sm" aria-current="page"
                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                             data-bs-title="Eliminar"><i
                                                                 class="fa-solid fa-trash"></i></a>
+                                                        <a href="/user/select/{{user.id}}"
+                                                            class="btn btn-outline-warning btn-sm" aria-current="page"
+                                                            data-bs-toggle="tooltip" data-bs-placement="top"
+                                                            data-bs-title="Seleccionar"><i class="fa-solid fa-cart-plus"></i></a>
                                                     </div>
-                                                </td>
-                                                <td>
-                                                    <a href="/cart/store/{{item.id}}"
-                                                        class="btn btn-outline-info btn-sm" onclick="test(item)"
-                                                        aria-current="page"><i class="fa-solid fa-circle-plus"></i></a>
                                                 </td>
                                             </tr>
                                             @end
@@ -202,7 +198,7 @@
     @include('partials/scripts')
 
     <!-- ScriptItems -->
-    <script src="/pages/item.js"></script>
+    <script src="/pages/user.js"></script>
 </body>
 
 </html>

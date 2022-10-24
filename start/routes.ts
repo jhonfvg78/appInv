@@ -21,13 +21,21 @@
 import Route from '@ioc:Adonis/Core/Route'
 import CategoryFactory from 'Database/factories/CategoryFactory'
 import ItemFactory from 'Database/factories/ItemFactory'
+import UserFactory from 'Database/factories/UserFactory'
 
 
 Route.get('/', async ({ view }) => {
   //  await ItemFactory.createMany(2000)  
   // await CategoryFactory.createMany(50)
-  return view.render('auth/register')
+
+  //const users = await UserFactory.createMany(100)
+
+  return view.render('index')
 })
+
+Route.group(() => { 
+  Route.get('/list', 'UsersController.viewList') 
+}).prefix('/user')
 
 Route.group(() => {
   Route.get('/tag/:tag', 'ItemsController.viewTag')

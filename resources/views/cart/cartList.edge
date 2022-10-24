@@ -31,117 +31,118 @@
                         <!-- Basic Bootstrap Table -->
                         <div class="card">
 
+                            <nav class="navbar navbar-dark navbar-expand-md bg-dark ">
+                                <div class="container"><a class="navbar-brand d-flex align-items-center" href="/cart/list"><span
+                                            class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"></span><i
+                                            class="menu-icon fa-solid fa-cart-shopping"></i>Items /
+                                        {{totalItems}}</a><button class="navbar-toggler" data-bs-toggle="collapse"
+                                        data-bs-target="#navcol-5"><span class="visually-hidden">Toggle
+                                            navigation</span><span class="navbar-toggler-icon"></span></button>
 
-
-                            <h4 class="card-header"><span class="text-muted fw-light"><span
-                                        style="color: rgb(49, 7, 173);">
-                                        <i class="menu-icon fa-solid fa-cart-shopping"></i>
-                                    </span></span>Carrito / {{totalItems}}</h4>
-
-                            <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
-                                id="layout-navbar">
-                               
-
-                                <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-                                    <!-- Search -->
-                                    <div class="navbar-nav align-items-center">
-                                        <div class="nav-item d-flex align-items-center me-2">
-                                            <span style="font-size: 1.5em; color: Dodgerblue;">
-                                                <i class="fa-solid fa-tag me-2"></i>
-                                              </span>
-
-                                            
-                                            <input type="text" class="form-control border shadow-none"
-                                                placeholder="Agregar Tag" onchange="itemSearch(this.value)"
-                                                aria-label="Search..." autofocus />
-                                        </div>
-
+                                    <div id="navcol-5" class="collapse navbar-collapse">
+                                        <ul class="navbar-nav ms-auto">
+                                            <li class="nav-item nav-link"><span style="color: rgb(255, 255, 255);">
+                                                    <i class="fa-solid fa-tag me-2"></i>
+                                                </span>
+                                                <input type="text" class="form-control-sm border shadow-none"
+                                                    placeholder="Buscar Tag" onchange="itemSearch(this.value)"
+                                                    autofocus />
+                                            </li>
+                                            <li class="nav-item nav-link"><button type="button"
+                                                    class="btn btn-danger btn-sm"><i class="fa-solid fa-cart-arrow-down me-1"></i>Limpiar</button>
+                                            </li>
+                                            <li class="nav-item nav-link"><button type="button"
+                                                    class="btn btn-primary btn-sm"><i
+                                                        class="fa-solid fa-user me-1"></i>Usuario</button>
+                                            </li>
+                                            <li class="nav-item nav-link"><button type="button"
+                                                    class="btn btn-success btn-sm"><i
+                                                        class="fa-solid fa-circle-check me-1"></i>Asignar</button>
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <!-- /Search -->
-
-                                    <ul class="navbar-nav flex-row align-items-center ms-auto">
-                                        <!-- Place this tag where you want the button to render. -->
-                                        <li class="menu-item me-2">
-                                            <button type="button" class="btn btn-primary">Limpiar</button> 
-                                        </li>
-
-                                        <!-- User -->
-                                        <li class="nav-item ">
-                                            <button type="button" class="btn btn-success">Asignar</button>                                   
-                                        </li>
-                                        <!--/ User -->
-                                    </ul>
                                 </div>
                             </nav>
 
-                            <div class="table-responsive text-nowrap">
-                                <div class="container">
-                                    <table id="dataTables"
-                                        class="table table-striped table-hover table-row-border table-order-column m-3 p-3"
-                                        style="width: 100%">
-                                        <thead>
-                                            <tr>
-                                                <th>Referencia</th>
-                                                <th>image</th>
-                                                <th>Cantidad</th>
-                                                <th>Eliminar</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @each(cart in carts)
-
-                                            <tr>
-                                                <td>{{ cart.reference }}</td>
-                                                <td> <a class="example-image-link" href="{{ cart.image }}"
-                                                        data-lightbox="roadtrip">
-                                                        <img class="rounded float-start" height="50px"
-                                                            src="{{ cart.image }}" onerror="imageError(event)" />
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <input type="number" class="form-control" id="image" name="image"
-                                                        value="{{ cart.quantity }}" style="width: 80px" />
-                                                </td>
-                                                <td>
-                                                    <form id="formId" action="/cart/delete/{{cart.id}}" method="POST">
-
-                                                        <button type="submit" class="btn btn-outline-info btn-sm"><i
-                                                                class="fa-solid fa-trash"></i></button>
 
 
-                                                    </form>
-
-
-                                                </td>
-                                            </tr>
-                                            @end
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </div>
                         </div>
-                        <!--/ Basic Bootstrap Table -->
 
-                        <hr class="my-5" />
 
+
+                        <p class="text-capitalize fs-6 me-2 mt-2">jhon fredy valencia gómez
+                            <strong>ID: 15514637</strong>
+                        </p>
+
+
+                        <div class="table-responsive text-nowrap">
+                            <div class="container">
+                                <table id="dataTables"
+                                    class="table table-striped table-hover table-row-border table-order-column m-3 p-3"
+                                    style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Referencia</th>
+                                            <th>image</th>
+                                            <th>Cantidad</th>
+                                            <th>Eliminar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @each(cart in carts)
+
+                                        <tr>
+                                            <td>{{ cart.reference }}</td>
+                                            <td> <a class="example-image-link" href="{{ cart.image }}"
+                                                    data-lightbox="roadtrip">
+                                                    <img class="rounded float-start" height="50px"
+                                                        src="{{ cart.image }}" onerror="imageError(event)" />
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <input type="number" class="form-control" id="image" name="image"
+                                                    value="{{ cart.quantity }}" style="width: 80px" />
+                                            </td>
+                                            <td>
+                                                <form id="formId" action="/cart/delete/{{cart.id}}" method="POST">
+
+                                                    <button type="submit" class="btn btn-outline-info btn-sm"><i
+                                                            class="fa-solid fa-trash"></i></button>
+
+
+                                                </form>
+
+
+                                            </td>
+                                        </tr>
+                                        @end
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
                     </div>
-                    <!-- / Content -->
-                    @include('partials/footer')
-                    <!-- Footer -->
+                    <!--/ Basic Bootstrap Table -->
 
-                    <!-- / Footer -->
+                    <hr class="my-5" />
 
-                    <div class="content-backdrop fade"></div>
                 </div>
+                <!-- / Content -->
+                @include('partials/footer')
+                <!-- Footer -->
 
-                <!-- Content wrapper -->
+                <!-- / Footer -->
+
+                <div class="content-backdrop fade"></div>
             </div>
-            <!-- / Layout page -->
-        </div>
 
-        <!-- Overlay -->
-        <div class="layout-overlay layout-menu-toggle"></div>
+            <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+    </div>
+
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
 
