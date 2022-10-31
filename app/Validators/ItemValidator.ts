@@ -31,7 +31,7 @@ export default class ItemValidator {
     quantity: schema.number([rules.required()]),
     location: schema.string.optional(),    
     image: schema.string.optional(),
-    datasheet: schema.string.optional()
+    resource: schema.string.optional()
   })
 
   /**

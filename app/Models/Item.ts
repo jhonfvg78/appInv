@@ -21,16 +21,13 @@ export default class Item extends BaseModel {
   public quantity: number
 
   @column()
-  public available: number
-
-  @column()
   public location: string 
 
   @column()
   public image: string
 
   @column()
-  public datasheet: string
+  public resource: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

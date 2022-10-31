@@ -9,12 +9,11 @@ export default class extends BaseSchema {
       table.string('tag')
       table.string('reference')
       table.string('category')      
-      table.string('description')
-      table.integer('quantity')  
-      table.integer('available')    
+      table.text('description')
+      table.integer('quantity') 
       table.string('location')       
       table.text('image')      
-      table.string('datasheet')
+      table.text('resource')
       
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

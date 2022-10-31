@@ -4,25 +4,19 @@ import { column, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
-  public id: number
+  public id: string
 
   @column()
   public name: string
 
   @column()
-  public lastname: string
-
-  @column()
-  public phone: string
+  public lastname: string 
 
   @column()
   public email: string
 
   @column()
   public group: string
-
-  @column()
-  public photo: string
 
   @column()
   public role: string

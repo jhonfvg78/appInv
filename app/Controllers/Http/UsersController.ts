@@ -6,4 +6,12 @@ export default class UsersController {
     const users = await User.all()
     return view.render('user/userList', { users: users })
   }
+
+  public async viewListGroup({ view, params }: HttpContextContract) {
+       const users = await User
+      .query()
+      .where('group', params.group)
+    //const categories = await Category.all()
+    return view.render('user/userList', { users: users })
+  }
 }

@@ -28,26 +28,27 @@ Route.get('/', async ({ view }) => {
   //  await ItemFactory.createMany(2000)  
   // await CategoryFactory.createMany(50)
 
-  //const users = await UserFactory.createMany(100)
+  const users = await UserFactory.createMany(100)
 
   return view.render('index')
 })
 
 Route.group(() => { 
   Route.get('/list', 'UsersController.viewList') 
+  Route.get('/group/:group', 'UsersController.viewListGroup') 
 }).prefix('/user')
 
 Route.group(() => {
-  Route.get('/tag/:tag', 'ItemsController.viewTag')
-  Route.get('/reference/:reference', 'ItemsController.viewReference')
-  Route.get('/list/:category', 'ItemsController.viewList')
-  Route.get('/detail/:id', 'ItemsController.viewDetail')
-  Route.get('/create', 'ItemsController.viewCreate')
+  //Views
+  Route.get('/tag/:tag', 'ItemsController.viewListTag')
+  Route.get('/reference/:reference', 'ItemsController.viewListReference')
+  Route.get('/category/:category', 'ItemsController.viewListCategory')
   Route.get('/edit/:id', 'ItemsController.viewEdit')  
-  Route.get('/delete/:id', 'ItemsController.viewDelete')  
-  Route.post('/store', 'ItemsController.apiStore') 
-  Route.post('/udpate/:id', 'ItemsController.apiUpdate')
+  //Api
+  Route.get('/list/:id', 'ItemsController.apiListId')
   Route.post('/delete/:id', 'ItemsController.apiDelete')
+  Route.post('/store', 'ItemsController.apiStore') 
+  Route.post('/udpate/:id', 'ItemsController.apiUpdate') 
 }).prefix('/item')
 
 Route.group(() => {

@@ -4,12 +4,10 @@ import Factory from '@ioc:Adonis/Lucid/Factory'
 export default Factory.define(User, ({ faker }) => {
   return {
     name:faker.internet.userName(),
-    lastname:faker.internet.userName(),
-    phone:"3122547898",
+    lastname:faker.internet.userName(),    
     email:faker.internet.email(),
     group:"123456",
     photo:faker.internet.avatar(),
-    role:"user"
-    
+    role:"user"    
   }
 }).build()
