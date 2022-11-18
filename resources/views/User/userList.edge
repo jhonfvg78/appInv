@@ -14,36 +14,54 @@
             <!-- Layout container -->
             <div class="layout-page">
                 <!-- Navbar -->
-                @include('partials/header')
+                {{-- @include('partials/header') --}}
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
                     <div class="container mt-2">
+                        @if(flashMessages.has('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">                                                           
+                                <div> <i class="fa-solid fa-check me-2"></i>
+                                    {{ flashMessages.get('success') }}
+                                </div>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>                            
+                          </div>
+                        @endif
                         <div class="card">
                             <div class="card-header">
                                 <nav class="navbar navbar-dark navbar-expand-md bg-dark ">
-                                    <div class="container"><a class="navbar-brand d-flex align-items-center"
-                                            href="/cart/list"><span
-                                                class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon"></span><i
-                                                class="menu-icon fa-solid fa-layer-group"></i>
-                                            </span>
-                                            </span>Usuarios</a><button class="navbar-toggler" data-bs-toggle="collapse"
+                                    <div class="container">
+                                        <div class="d-flex flex-row">
+                                            <i class="menu-icon fa-solid fa-layer-group"></i>
+                                            <span>Usuarios </span>
+                                        </div>
+
+                                        <button class="navbar-toggler" data-bs-toggle="collapse"
                                             data-bs-target="#navcol-5"><span class="visually-hidden">Toggle
-                                                navigation</span><span class="navbar-toggler-icon"></span></button>
+                                                navigation</span><span class="navbar-toggler-icon"></span>
+                                        </button>
 
                                         <div id="navcol-5" class="collapse navbar-collapse">
                                             <ul class="navbar-nav ms-auto">
                                                 <li class="nav-item nav-link">
                                                     <input type="text" class="form-control-sm border shadow-none"
-                                                        placeholder="Buscar" onchange="itemSearch(this.value)"
+                                                        placeholder="Buscar" onchange="userSearch(this.value)"
                                                         autofocus />
                                                 </li>
                                                 <li class="nav-item nav-link">
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-success btn-sm"
+                                                    <button type="button" class="btn btn-primary btn-sm"
+                                                        data-bs-toggle="modal" data-bs-target="#categoryModal">
+                                                        Grupos
+                                                    </button>
+                                                </li>
+                                                <li class="nav-item nav-link">
+                                                    {{--  <button type="button" class="btn btn-success btn-sm"
                                                         data-bs-toggle="modal" data-bs-target="#createModal">
                                                         Nuevo
-                                                    </button>
+                                                    </button>  --}}
+                                                    <a href="/user/create" class="btn btn-primary btn-sm"
+                                                            aria-current="page" data-bs-toggle="tooltip"
+                                                            data-bs-placement="top" data-bs-title="Editar">Nuevo</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -57,20 +75,20 @@
                                         style="width: 100%">
                                         <thead>
                                             <tr>
+                                                <th>Identificación</th>
                                                 <th>Nombres</th>
                                                 <th>Apellidos</th>
-                                                <th>Grupo</th>
                                                 <th>Foto</th>
                                                 <th>Acciones</th>
-                                                <th>Seleccionar</th>
+                                                <th>Selecionar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @each(user in users)
                                             <tr>
+                                                <td>{{ user.identification }}</td>
                                                 <td>{{ user.name }}</td>
                                                 <td>{{ user.lastname }}</td>
-                                                <td>{{ user.group }}</td>
                                                 <td> <a class="example-image-link" href="{{ user.photo }}"
                                                         data-lightbox="roadtrip">
                                                         <img class="rounded float-start" height="50px"
@@ -79,28 +97,25 @@
                                                 </td>
                                                 <td>
                                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                                        <a href="/item/edit/{{user.id}}" class="btn btn-primary btn-sm"
+                                                        <a href="/user/edit/{{user.id}}" class="btn btn-primary btn-sm"
                                                             aria-current="page" data-bs-toggle="tooltip"
                                                             data-bs-placement="top" data-bs-title="Editar"><i
                                                                 class="fa-solid fa-file-pen"></i></a>
 
-                                                        <button type="button" class="btn btn-success btn-sm"
-                                                            onclick="detailSelectItem({{user.id}})"
-                                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            data-bs-title="Detalles">
-                                                            <i class="fa-solid fa-circle-info"></i>
-                                                        </button>
+                                                        <a href="/user/delete/{{user.id}}" class="btn btn-danger btn-sm"
+                                                            aria-current="page" data-bs-toggle="tooltip"
+                                                            data-bs-placement="top" data-bs-title="Eliminar"> <i
+                                                                class="fa-solid fa-trash"></i></a>
 
-                                                        <button type="button" class="btn btn-danger btn-sm"
-                                                            onclick="deleteSelectItem({{user.id}})"
-                                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            data-bs-title="Eliminar">
-                                                            <i class="fa-solid fa-trash"></i>
-                                                        </button>
+                                                        <a href="/loan/user/{{user.id}}" class="btn btn-danger btn-sm"
+                                                            aria-current="page" data-bs-toggle="tooltip"
+                                                            data-bs-placement="top" data-bs-title="Eliminar"> <i
+                                                                class="fa-solid fa-trash"></i></a>
+
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <a href="/cart/store/{{user.id}}"
+                                                    <a href="/user/select/{{user.id}}"
                                                         class="btn btn-outline-info btn-sm" aria-current="page"><i
                                                             class="fa-solid fa-circle-plus"></i></a>
                                                 </td>
@@ -121,6 +136,43 @@
         <div class="layout-overlay layout-menu-toggle"></div>
     </div>
 
+    <!-- Modal Categories-->
+    <div class="modal fade " id="categoryModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">GRUPOS</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="list-group">
+                        <a href="/user/group/NA" class="list-group-item list-group-item-action">
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="">
+                                    <div class="fw-bold">NA</div>
+                                    Sin grupo
+                                </div>
+                            </li>
+                        </a>
+                        @each(group in groups)
+                        <a href="/user/group/{{group.group}}" class="list-group-item list-group-item-action">
+
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="">
+                                    <div class="fw-bold">{{group.group}}</div>
+                                    {{group.description}}
+                                </div>
+                            </li>
+                        </a>
+                        @end
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal Create-->
     <div class="modal" id="createModal">
@@ -139,76 +191,72 @@
 
                         <div class="col-md-6">
                             <div class="row">
-                                <label for="image" class="form-label">URL Imagen</label>
+                                <label for="photo" class="form-label">URL Foto</label>
                                 <div class="input-group">
                                     <button class="btn btn-primary" type="button" onclick="clearUrlImage()"
                                         id="button-addon2"><i class="fa-solid fa-ban"></i></button>
-                                    <input type="text" class="form-control" id="image" name="image"
+                                    <input type="text" class="form-control" id="photo" name="photo"
                                         onchange="updateImage()" />
                                     <button class="btn btn-warning" type="button" onclick="openUrlImage()"
                                         id="button-addon2"><i class="fa-solid fa-eye"></i></button>
                                 </div>
                             </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="identification" class="form-label">Identificación</label>
+                            <input class="form-control" type="text" name="identification" id="identification"
+                                required />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="tag" class="form-label">Tag</label>
+                            <div class="input-group">
+                                <input class="form-control" type="text" id="tag" name="tag" autofocus
+                                    style="text-transform: uppercase" required />
+                                <button class="btn btn-primary" type="button" id="button-addon2" onclick="genId()">
+                                    <i class="fa-solid fa-tag"></i>
+                                </button>
+                            </div>
                         </div>
 
                         <div class="col-md-6">
                             <label for="name" class="form-label">Nombres</label>
-                            <input class="form-control" type="text" name="name" id="name"
-                                style="text-transform: uppercase" required />
+                            <input class="form-control" type="text" name="name" id="name" required />
                         </div>
 
                         <div class="col-md-6">
                             <label for="lastname" class="form-label">Apellidos</label>
-                            <div class="input-group">
-                                <input class="form-control" type="text" id="lastname" name="lastname" 
-                                    style="text-transform: uppercase" required />
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="phone" class="form-label">Teléfono</label>
-                            <div class="input-group">
-                                <input class="form-control" type="text" id="phone" name="phone" 
-                                     required />
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="email" class="form-label">Email</label>
-                            <div class="input-group">
-                                <input class="form-control" type="text" id="email" name="email" 
-                                     required />
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="group" class="form-label">Grupo</label>
-                            <div class="input-group">
-                                <input class="form-control" type="text" id="group" name="group" 
-                                     required />
-                            </div>
+                            <input class="form-control" type="text" name="lastname" id="lastname" required />
                         </div>
 
                         <div class="col-md-4">
-                            <label for="role" class="form-label">Rol</label>
-                            <div class="input-group">                                
-                                <select id="role" name="role" class="form-select">
-                                    <option>Usuario</option>
-                                    <option>Administrador</option>
+                            <label for="email" class="form-label">Correo</label>
+                            <input class="form-control" type="email" name="email" id="email" required />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="phone" class="form-label">Teléfono</label>
+                            <input class="form-control" type="text" name="phone" id="phone" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="group" class="form-label">Grupo</label>
+                            <div class="input-group">
+                                <a class="btn btn-primary" href="/category/list" role="button"><i
+                                        class="fa-solid fa-list"></i></a>
+                                <select id="group" name="group" class="form-select">
+                                    <option value="NA">NA</option>
+                                    @each(group in groups)
+                                    <option value="{{group.group}}">{{group.group}}</option>
+                                    @end
                                 </select>
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <label for="password" class="form-label">Contraseña</label>
-                            <div class="input-group">
-                                <input class="form-control" type="password" id="password" name="password" 
-                                     required />
-                            </div>
-                        </div>                        
-
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        <div class="col-12 mt-4">
+                            <button type="submit" class="btn btn-success">Guardar</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                         </div>
                     </form>
@@ -217,89 +265,10 @@
         </div>
     </div>
 
-    <!-- Modal Delete-->
-    <div class="modal" tabindex="-1" id="deleteModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">ELIMINAR USUARIO</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <h5 class="modal-title" id="deleteReference"></h5>
-                        <h5 class="modal-title" id="deleteId" hidden></h5>
-                    </div>
-                    <div class="mb-3">
-                        <label for="location" class="form-label">VALIDAR IDENTIFICACION</label>
-                        <input type="text" class="form-control" id="confirm_reference" />
-                        <p><small>Digite la identificación del usuario.</small></p>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <form id="deleteForm" action="" method="POST">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button class="btn btn-danger" type="button" data-bs-toggle="modal"
-                            onclick="deleteItem()">Eliminar</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Detail-->
-    <div class="modal" tabindex="-1" id="detailModal">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">DETALLES</h5>
-                </div>
-                <div class="modal-body">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="row">
-                                <div class="col-4">
-                                    <h5 class="modal-title">Imagen:</h5>
-                                    <img src="/template/img/item/item.png" class="d-block rounded border" height="120"
-                                        id="detailItemImage" data-lightbox="roadtrip" onerror="imageError(event)" />
-                                </div>
-                                <div class="col-8">
-                                    <h5 class="modal-title">Descripción:</h5>
-                                    <textarea class="form-control" id="detailDescription" rows="4"></textarea>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <h5 class="modal-title" id="detailReference"></h5>
-                        </li>
-                        <li class="list-group-item">
-                            <h5 class="modal-title" id="detailCategory"></h5>
-                        </li>
-                        <li class="list-group-item">
-                            <h5 class="modal-title" id="detailQuantity"></h5>
-                        </li>
-                        <li class="list-group-item">
-                            <h5 class="modal-title" id="detailLocation"></h5>
-                        </li>
-                        <li class="list-group-item" hidden>
-                            <h5 class="modal-title" id="detailResource"></h5>
-                        </li>
-                    </ul>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="openUrlDetailResource()">Recursos
-                        Online</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     @include('partials/scripts')
 
     <!-- ScriptPage -->
-    <script src="/pages/item.js"></script>
+    <script src="/pages/user.js"></script>
 </body>
 
 </html>

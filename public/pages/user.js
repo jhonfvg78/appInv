@@ -1,20 +1,17 @@
-//page Create
+//-----------------------------------------------------------------------------
+//Datatables
+$(document).ready(function () {
+    $('#dataTables').DataTable({
+        dom: 'rtp',
+    });
+});
+//-----------------------------------------------------------------------------
 
-function clearUrlImage() {
-    document.getElementById("image").value = "";
-    let image = document.getElementById("itemImage");
-    let imageTemplate = document.getElementById("imageTemplate");
-    image.src = imageTemplate.src;
-}
-
-function clearUrlDatasheet() {
-    document.getElementById("datasheet").value = "";   
-}
-
-function updateImage() {
-    let imageInput = document.getElementById("image");
-    let image = document.getElementById("itemImage");
-    if (imageInput.value) image.src = imageInput.value;
+//-----------------------------------------------------------------------------
+//Image
+function openUrlImage() {
+    let urlInput = document.getElementById("photo").value;
+    window.open(urlInput);
 }
 
 function imageError(event) {
@@ -22,6 +19,22 @@ function imageError(event) {
     event.onerror = null
 }
 
+function clearUrlImage() {
+    document.getElementById("photo").value = "";
+    let image = document.getElementById("itemImage");
+    let imageTemplate = document.getElementById("imageTemplate");
+    image.src = imageTemplate.src;
+}
+
+function updateImage() {
+    let imageInput = document.getElementById("photo");
+    let image = document.getElementById("itemImage");
+    if (imageInput.value) image.src = imageInput.value;
+}
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+//GenerateTag
 function dec2hex(dec) {
     return dec.toString(16).padStart(2, "0")
 }
@@ -35,86 +48,11 @@ function generateId(len) {
 function genId() {
     document.getElementById('tag').value = generateId(20);
 }
+//-----------------------------------------------------------------------------
 
-function prepareForm(reference) {
-    let input = document.getElementById("confirm_delete");
-    let form = document.getElementById("formId");
-    if (input.value == reference) {
-        form.submit();
-    }
-    else {
-        toastr.options = {
-            "closeButton": false,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": false,
-            "positionClass": "toast-top-center",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "3000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        }
-        toastr.error('Error de validación')
-        input.value = "";
-        return false
-    }
+//-----------------------------------------------------------------------------
+//Search user
+function userSearch(value) {
+    document.location.href = "/user/search/" + value
 }
-
-$(document).ready(function () {
-    $('#dataTables').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            {
-                extend: 'excel',
-                text: '<i class="fa-solid fa-file-excel"></i>',
-                titleAttr: 'Exportar a Excel',
-                className: 'btn btn-info btn-sm',
-            },
-            {
-                extend: 'pdf',
-                text: '<i class="fa-solid fa-file-pdf"></i> ',
-                titleAttr: 'Exportar a PDF',
-                className: 'btn btn-info btn-sm',
-            },
-            {
-                text: '<i class="fa-solid fa-list"></i>',
-                className: 'btn btn-info btn-sm',
-                titleAttr: 'Categorías',
-                action: function (e, dt, node, config) {
-                    $('#categoryModal').modal('show');
-                }
-            },
-            {
-                text: '<i class="fa-regular fa-file"></i>',
-                className: 'btn btn-info btn-sm',
-                titleAttr: 'Agregar Elemento',
-                action: function (e, dt, node, config) {
-                    document.location.href = "/user/create"
-                }
-            }
-        ]
-    });
-});
-
-// function isImage(url) {
-//     return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
-// }
-
-function openDataSheet() {
-    let dataSheetInput = document.getElementById("inputdatasheet").value;
-    window.open(dataSheetInput);
-}
-
-
-function openDrive() {
-    let dataSheetInput = document.getElementById("inputdrive").value;
-    window.open(dataSheetInput);
-}
-
-
+//-----------------------------------------------------------------------------

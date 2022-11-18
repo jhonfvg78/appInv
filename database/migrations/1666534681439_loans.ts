@@ -5,9 +5,10 @@ export default class extends BaseSchema {
 
   public async up () {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id')
-      table.integer('idItem')  
-      table.integer('idUser')  
+      table.increments('id')    
+      table.timestamp('admission')   
+      table.integer('user_id')       
+      table.integer('item_id')    
       table.string('reference')
       table.integer('quantity')  
       table.text('image')

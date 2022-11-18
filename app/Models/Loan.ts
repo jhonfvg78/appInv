@@ -5,20 +5,23 @@ export default class Loan extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
-  @column()
-  public idItem: number
+  @column.dateTime()
+  public admission: DateTime
 
   @column()
-  public idUser: number
+  public user_id: number
 
   @column()
-  public reference: string
+  public item_id: number
+
+  @column()
+  public reference: string = ""
 
   @column()
   public quantity: number
 
   @column()
-  public image: string
+  public image: string = ""
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

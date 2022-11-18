@@ -22,88 +22,90 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">ACTUALIZAR</h5>
-                <form action="/item/udpate/{{item.id}}" method="POST" class="row g-3 mt-1">
+
+                <form action="/user/udpate/{{user.id}}" method="POST" class="row g-3">
                   <div class="col-md-6">
-                    <a class="example-image-link" href="{{ item.image }}" data-lightbox="roadtrip">
-                      <img src="{{item.image}}" class="d-block rounded border" height="120" id="itemImage"
+                    <a class="example-image-link" href="{{ user.photo }}" data-lightbox="roadtrip">
+                      <img src="{{user.photo}}" class="d-block rounded border" height="120" id="itemImage"
                         data-lightbox="roadtrip" onerror="imageError(event)" />
                     </a>
                   </div>
+
                   <div class="col-md-6">
                     <div class="row">
-                      <label for="image" class="form-label">URL Imagen</label>
+                      <label for="photo" class="form-label">URL Foto</label>
                       <div class="input-group">
                         <button class="btn btn-primary" type="button" onclick="clearUrlImage()" id="button-addon2"><i
                             class="fa-solid fa-ban"></i></button>
-                        <input type="text" class="form-control" id="image" name="image" onchange="updateImage()"
-                          value="{{item.image}}" />
-                        <button class="btn btn-warning" type="button" onclick="openUrlImage()"
-                          id="button-addon2"><i class="fa-solid fa-eye"></i></button>
+                        <input type="text" class="form-control" id="photo" name="photo" onchange="updateImage()"
+                          value="{{user.photo}}" />
+                        <button class="btn btn-warning" type="button" onclick="openUrlImage()" id="button-addon2"><i
+                            class="fa-solid fa-eye"></i></button>
                       </div>
                     </div>
-                    <div class="row mt-2">
-                      <label for="resource" class="form-label">URL Recursos</label>
-                      <div class="input-group">
-                        <button class="btn btn-primary" type="button" id="button-addon2"
-                          onclick="clearUrlResource()"><i class="fa-solid fa-ban"></i></button>
-                        <input type="text" class="form-control" id="resource" name="resource"
-                          value="{{item.resource}}" />
-                        <button class="btn btn-warning" type="button" onclick="openUrlResource()"
-                          id="button-addon2"><i class="fa-solid fa-eye"></i></button>
-                      </div>
-                    </div>
+
                   </div>
+
                   <div class="col-md-6">
-                    <label for="reference" class="form-label">Referencia</label>
-                    <input class="form-control" type="text" name="reference" id="reference" value="{{item.reference}}"
-                      required />
+                    <label for="identification" class="form-label">Identificación</label>
+                    <input class="form-control" type="text" name="identification" id="identification" value="{{user.identification}}"  required  readonly/>
                   </div>
+
                   <div class="col-md-6">
                     <label for="tag" class="form-label">Tag</label>
                     <div class="input-group">
                       <input class="form-control" type="text" id="tag" name="tag" autofocus
-                        style="text-transform:uppercase" required value="{{item.tag}}" />
-                      <button class="btn btn-primary" type="button" id="button-addon2"
-                        onclick="genId()">Generar</button>
+                        style="text-transform: uppercase" value="{{user.tag}}"/>
+                      <button class="btn btn-primary" type="button" id="button-addon2" onclick="genId()">
+                        <i class="fa-solid fa-tag"></i>
+                      </button>
                     </div>
                   </div>
+
+                  <div class="col-md-6">
+                    <label for="name" class="form-label">Nombres</label>
+                    <input class="form-control" type="text" name="name" id="name" value="{{user.name}}" required />
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="lastname" class="form-label">Apellidos</label>
+                    <input class="form-control" type="text" name="lastname" id="lastname" value="{{user.lastname}}"
+                      required />
+                  </div>
+
                   <div class="col-md-4">
-                    <label for="category" class="form-label">Categoría</label>
+                    <label for="email" class="form-label">Correo</label>
+                    <input class="form-control" type="email" name="email" id="email" value="{{user.email}}" />
+                  </div>
+
+                  <div class="col-md-4">
+                    <label for="phone" class="form-label">Teléfono</label>
+                    <input class="form-control" type="text" name="phone" id="phone" value="{{user.phone}}" />
+                  </div>
+
+                  <div class="col-md-4">
+                    <label for="group" class="form-label">Grupo</label>
                     <div class="input-group">
-                      <button class="btn btn-primary" type="button" id="button-addon2"><i
-                          class="fa-solid fa-list"></i></button>
-                      <select id="category" name="category" class="form-select">
-                        <option value="Ninguna">Ninguna</option>
-                        @each(category in categories)
-                        @if(category.name==item.category)
-                        <option value="{{category.name}}" selected>{{category.name}}</option>
+                      <a class="btn btn-primary" href="/group/list" role="button"><i
+                          class="fa-solid fa-list"></i></a>
+                      <select id="group" name="group" class="form-select">
+                        <option value="NA">NA</option>
+                        @each(group in groups)
+                        @if(group.group==user.group)
+                        <option value="{{group.group}}" selected>{{group.group}}</option>
                         @else
-                        <option value="{{category.name}}">{{category.name}}</option>
+                        <option value="{{group.group}}">{{group.group}}</option>
                         @end
                         @end
                       </select>
                     </div>
                   </div>
-                  <div class="col-md-4">
-                    <label for="quantity" class="form-label">Cantidad</label>
-                    <input type="number" class="form-control" id="quantity" name="quantity" min="0"
-                      value="{{item.quantity}}" required />
-                  </div>
-                  <div class="col-md-4">
-                    <label for="location" class="form-label">Ubicación</label>
-                    <input type="text" class="form-control" id="location" name="location"
-                      style="text-transform:uppercase" value="{{item.location}}" />
-                  </div>
-                  <div class="col-12">
-                    <label for="description" class="form-label">Descripción</label>
-                    <textarea class="form-control" id="description" name="description" rows="2"
-                      value="{{item.maintenance}}"></textarea>
-                  </div>
-                  <div class="col-12">
+
+                  <div class="col-12 mt-4">
                     <button type="submit" class="btn btn-success">Guardar</button>
                     <a href="javascript:history.back()" class="btn btn-secondary">Cancelar</a>
                   </div>
-                </form>
+                </form>               
               </div>
             </div>
           </div>
@@ -119,7 +121,7 @@
   @include('partials/scripts')
 
   <!-- ScriptPage -->
-  <script src="/pages/item.js"></script>
+  <script src="/pages/user.js"></script>
 </body>
 
 </html>

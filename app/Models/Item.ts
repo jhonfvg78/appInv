@@ -6,28 +6,34 @@ export default class Item extends BaseModel {
   public id: number
 
   @column()
-  public tag: string 
+  public tag: string = ""
 
   @column()
-  public reference: string
+  public reference: string = ""
 
   @column()
-  public category: string
-
-  @column()
-  public description: string
+  public category: string = ""
 
   @column()
   public quantity: number
 
   @column()
-  public location: string 
+  public available: number
 
   @column()
-  public image: string
+  public location: string = ""
 
   @column()
-  public resource: string
+  public status: string = ""
+
+  @column()
+  public image: string = ""
+
+  @column()
+  public resource: string = ""
+
+  @column()
+  public admission: string = ""
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -36,11 +42,12 @@ export default class Item extends BaseModel {
   public updatedAt: DateTime
 
   @beforeSave()
-  public static async tagUpperCase(item: Item) {
-    try {     
-      item.tag = item.tag.toUpperCase();   
+  public static async beforeItem(item: Item) {
+    try {
+      item.available = item.quantity;
+      item.tag = item.tag.toUpperCase();
     } catch (error) {
-      
-    }      
+
+    }
   }
 }

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/"
+    data-template="vertical-menu-template-free">
+
+@include('partials/head')
+
+<body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <!-- Menu -->
+            @include('partials/aside')
+            <!-- Layout container -->
+            <div class="layout-page">
+                <!-- Navbar -->
+                {{--  @include('partials/header')  --}}
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+                    <!-- Content -->
+                    <div class="container mt-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">ELIMINAR USUARIO: <strong>{{user.identification}}</strong></h5>                                
+                                <form action="/user/delete/{{user.id}}" method="POST" class="row g-3">                                    
+                                    <div class="col-md-4" hidden>
+                                        <label for="available" class="form-label">Identificación</label>
+                                        <input type="text" class="form-control" id="identification" name="identification" value="{{user.identification}}"/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="location" class="form-label">VALIDAR IDENTIFICACIÓN</label>
+                                        <input type="text" class="form-control" id="confirm_identification" name="confirm_identification"/>
+                                        <p><small>Digite la identificación.</small></p>
+                                    </div>
+                                    <div class="col-12 mt-2">
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                        <a href="javascript:history.back()" class="btn btn-secondary">Cancelar</a>
+                                    </div>
+                                </form>
+                                {{--  <h5 class="card-title">ELIMINAR ITEM</h5>
+                                <div class="mb-3">
+                                    <h5 class="modal-title" id="deleteIdentification">{{item.identification}}</h5> 
+                                    <h5 class="modal-title" id="deleteId" hidden>{{item.id}}</h5>                                   
+                                </div>
+                                <div class="mb-3">
+                                    <label for="location" class="form-label">VALIDAR IDENTIFICACIÓN</label>
+                                    <input type="text" class="form-control" id="confirm_identification" />
+                                    <p><small>Digite la referencia del elemento.</small></p>
+                                </div>
+                                <form id="deleteForm" action="" method="POST">                                    
+                                    <button class="btn btn-danger" type="button" data-bs-toggle="modal"
+                                        onclick="deleteUser()">Eliminar</button>
+                                        <a href="javascript:history.back()" class="btn btn-secondary">Cancelar</a>
+                                </form>                                  --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer -->
+                @include('partials/footer')
+            </div>
+        </div>
+        <!-- Overlay -->
+        <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+
+    @include('partials/scripts')
+
+    <!-- ScriptPage -->
+    <script src="/pages/user.js"></script>
+</body>
+
+</html>

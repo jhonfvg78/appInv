@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/"
+    data-template="vertical-menu-template-free">
+
+@include('partials/head')
+
+<body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <!-- Menu -->
+            @include('partials/aside')
+            <!-- Layout container -->
+            <div class="layout-page">
+                <!-- Navbar -->
+                {{-- @include('partials/header') --}}
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+                    <!-- Content -->
+                    <div class="container mt-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">ELIMINAR GRUPO: <strong>{{group.group}}</strong></h5>                                
+                                <form action="/group/delete/{{group.id}}" method="POST" class="row g-3">                                    
+                                    <div class="col-md-4" hidden>
+                                        <label for="group" class="form-label">Grupo</label>
+                                        <input type="text" class="form-control" id="group" name="group" value="{{group.group}}"/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="confirm_group" class="form-label">VALIDAR GRUPO</label>
+                                        <input type="text" class="form-control" id="confirm_group" name="confirm_group"/>
+                                        <p><small>Digite la referencia del elemento.</small></p>
+                                    </div>
+                                    <div class="col-12 mt-2">
+                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                        <a href="javascript:history.back()" class="btn btn-secondary">Cancelar</a>
+                                    </div>
+                                </form>                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer -->
+                @include('partials/footer')
+            </div>
+        </div>
+        <!-- Overlay -->
+        <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+
+    @include('partials/scripts')
+
+    <!-- ScriptPage -->
+    <script src="/pages/group.js"></script>
+</body>
+
+</html>

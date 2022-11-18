@@ -22,7 +22,7 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">ACTUALIZAR</h5>
-                <form action="/item/udpate/{{item.id}}" method="POST" class="row g-3 mt-1">
+                <form  id="updateForm" action="/item/udpate/{{item.id}}" method="POST" class="row g-3 mt-1">
                   <div class="col-md-6">
                     <a class="example-image-link" href="{{ item.image }}" data-lightbox="roadtrip">
                       <img src="{{item.image}}" class="d-block rounded border" height="120" id="itemImage"
@@ -37,19 +37,19 @@
                             class="fa-solid fa-ban"></i></button>
                         <input type="text" class="form-control" id="image" name="image" onchange="updateImage()"
                           value="{{item.image}}" />
-                        <button class="btn btn-warning" type="button" onclick="openUrlImage()"
-                          id="button-addon2"><i class="fa-solid fa-eye"></i></button>
+                        <button class="btn btn-warning" type="button" onclick="openUrlImage()" id="button-addon2"><i
+                            class="fa-solid fa-eye"></i></button>
                       </div>
                     </div>
                     <div class="row mt-2">
                       <label for="resource" class="form-label">URL Recursos</label>
                       <div class="input-group">
-                        <button class="btn btn-primary" type="button" id="button-addon2"
-                          onclick="clearUrlResource()"><i class="fa-solid fa-ban"></i></button>
+                        <button class="btn btn-primary" type="button" id="button-addon2" onclick="clearUrlResource()"><i
+                            class="fa-solid fa-ban"></i></button>
                         <input type="text" class="form-control" id="resource" name="resource"
                           value="{{item.resource}}" />
-                        <button class="btn btn-warning" type="button" onclick="openUrlResource()"
-                          id="button-addon2"><i class="fa-solid fa-eye"></i></button>
+                        <button class="btn btn-warning" type="button" onclick="openUrlResource()" id="button-addon2"><i
+                            class="fa-solid fa-eye"></i></button>
                       </div>
                     </div>
                   </div>
@@ -73,7 +73,7 @@
                       <button class="btn btn-primary" type="button" id="button-addon2"><i
                           class="fa-solid fa-list"></i></button>
                       <select id="category" name="category" class="form-select">
-                        <option value="Ninguna">Ninguna</option>
+                        <option value="NA">NA</option>
                         @each(category in categories)
                         @if(category.name==item.category)
                         <option value="{{category.name}}" selected>{{category.name}}</option>
@@ -84,25 +84,50 @@
                       </select>
                     </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-2">
                     <label for="quantity" class="form-label">Cantidad</label>
                     <input type="number" class="form-control" id="quantity" name="quantity" min="0"
                       value="{{item.quantity}}" required />
                   </div>
-                  <div class="col-md-4">
+
+                  <div class="col-md-4" hidden>
+                    <label for="available" class="form-label">Disponible</label>
+                    <input type="number" class="form-control" id="available" name="available" min="0"  value="{{item.quantity}}"/>
+                  </div>
+
+                  <div class="col-md-2">
                     <label for="location" class="form-label">Ubicación</label>
                     <input type="text" class="form-control" id="location" name="location"
                       style="text-transform:uppercase" value="{{item.location}}" />
                   </div>
-                  <div class="col-12">
-                    <label for="description" class="form-label">Descripción</label>
-                    <textarea class="form-control" id="description" name="description" rows="2"
-                      value="{{item.maintenance}}"></textarea>
+                  <div class="col-md-4">
+                    <label for="location" class="form-label">Estado</label>
+                    <select class="form-select" aria-label="Default select example" id="status" name="status">
+                      @if(item.status=="Disponible")
+                      <option value="Disponible" selected>Disponible</option>
+                      <option value="Mantenimiento">Mantenimiento</option>
+                      @else
+                      <option value="Disponible">Disponible</option>
+                      <option value="Mantenimiento" selected>Mantenimiento</option>
+                      @end
+                    </select>
                   </div>
-                  <div class="col-12">
-                    <button type="submit" class="btn btn-success">Guardar</button>
+
+                  <div class="col-md-4" hidden>
+                    <input type="text" class="form-control" id="admission" name="admission"
+                      style="text-transform: uppercase" />
+                  </div>
+
+                  <div class="col-12 mt-4">
+                    <button class="btn btn-danger" type="button" data-bs-toggle="modal"
+                        onclick="updateItem()">Guardar</button>
                     <a href="javascript:history.back()" class="btn btn-secondary">Cancelar</a>
                   </div>
+
+                  {{--  <div class="col-12 mt-4">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <a href="javascript:history.back()" class="btn btn-secondary">Cancelar</a>
+                  </div>  --}}
                 </form>
               </div>
             </div>

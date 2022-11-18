@@ -1,10 +1,24 @@
+//-----------------------------------------------------------------------------
+//Datatables
 $(document).ready(function () {
-    $('#dataTables').DataTable({
-        dom: 'rtip'
+    var events = $('#events');
+    var table = $('#dataTables').DataTable({
+        dom: 'rtp',
+        paging: false,
+        columnDefs: [
+            {
+                "targets": [0],
+                "visible": false,
+                "searchable": false
+            }
+        ]
     });
 });
+//-----------------------------------------------------------------------------
 
-function imageError(event) {
-    event.target.src = "/template/img/item/item.png"
-    event.onerror = null
+//-----------------------------------------------------------------------------
+//Search item
+function itemSearch(value) {
+    document.location.href = "/loan/search/" + value
 }
+//-----------------------------------------------------------------------------

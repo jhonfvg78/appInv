@@ -2,20 +2,20 @@
 //Datatables
 $(document).ready(function () {
     $('#dataTables').DataTable({
-        dom: 'rtip',
+        dom: 'rtp',
     });
 });
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
 //Image
-function openUrlImage(urlType) {
-    let urlInput = document.getElementById("image").value;      
+function openUrlImage() {
+    let urlInput = document.getElementById("image").value;
     window.open(urlInput);
 }
 
-function openUrlResource(urlType) {
-    let urlInput = document.getElementById("resource").value;      
+function openUrlResource() {
+    let urlInput = document.getElementById("resource").value;
     window.open(urlInput);
 }
 
@@ -32,7 +32,7 @@ function clearUrlImage() {
 }
 
 function clearUrlResource() {
-    document.getElementById("resource").value = "";    
+    document.getElementById("resource").value = "";
 }
 
 function updateImage() {
@@ -60,88 +60,26 @@ function genId() {
 //-----------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
-//Delete item
-function deleteItem() {
-    let reference = document.getElementById('deleteReference').textContent;
-    let confirm_reference = document.getElementById("confirm_reference");
-    let form = document.getElementById('deleteForm')
-    if (confirm_reference.value == reference) {
+//Update item
+function updateItem() {
+    let form = document.getElementById('updateForm')
+    var selectedValue = document.getElementById("status").value;
+    if (selectedValue == "Mantenimiento") {
+        var date = new Date();
+        document.getElementById("admission").value = date.toLocaleDateString();
         form.submit();
     }
     else {
-        toastr.options = {
-            "closeButton": false,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": false,
-            "positionClass": "toast-top-center",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "3000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        }
-        toastr.error('Error de validación')
-        confirm_reference.value = "";
-        return false
+        document.getElementById("admission").value = "";
+        form.submit();
     }
 }
-
-function deleteSelectItem(id) {
-    document.getElementById('deleteReference').textContent = "";
-    document.getElementById('deleteId').textContent = "";
-    fetch('/item/list/' + id)
-        .then(response => response.json())
-        .then((data) => {
-            document.getElementById('deleteReference').textContent = data.reference;
-            document.getElementById('deleteId').textContent = data.id;
-            document.getElementById('deleteForm').action = "/item/delete/" + data.id
-            var myModal = new bootstrap.Modal(document.getElementById('deleteModal'), {})
-            myModal.show();
-        }
-        );
-}
-//-----------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------
-//Detail item
-function detailSelectItem(id) {
-    // document.getElementById('deleteReference').textContent = "";
-    // document.getElementById('deleteId').textContent = "";
-    fetch('/item/list/' + id)
-        .then(response => response.json())
-        .then((data) => {
-            let image = document.getElementById("detailItemImage");
-            image.src = data.image;
-            document.getElementById('detailReference').textContent =  "Referencia: "+ data.reference; 
-            document.getElementById('detailCategory').textContent = "Categoría: "+ data.category;
-            document.getElementById('detailQuantity').textContent = "Cantidad: "+ data.quantity;
-            document.getElementById('detailLocation').textContent = "Ubicación: "+ data.location;
-            document.getElementById('detailDescription').innerHTML = data.description;
-            document.getElementById('detailResource').textContent = data.resource;
-            
-            detailDescription
-            // document.getElementById('deleteReference').textContent = data.reference;
-            // document.getElementById('deleteId').textContent = data.id;
-            // document.getElementById('deleteForm').action = "/item/delete/" + data.id
-            var myModal = new bootstrap.Modal(document.getElementById('detailModal'), {})
-            myModal.show();
-        }
-        );
-}
-
-function openUrlDetailResource() {
-    let  url = document.getElementById("detailResource").textContent;           
-    window.open(url);
-}
 //-----------------------------------------------------------------------------
 
 
-
-
-
+//-----------------------------------------------------------------------------
+//Search item
+function itemSearch(value) {
+    document.location.href = "/item/search/" + value
+}
+//-----------------------------------------------------------------------------

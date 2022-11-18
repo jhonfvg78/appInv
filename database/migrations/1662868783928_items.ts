@@ -8,12 +8,14 @@ export default class extends BaseSchema {
       table.increments('id')
       table.string('tag')
       table.string('reference')
-      table.string('category')      
-      table.text('description')
+      table.string('category')
       table.integer('quantity') 
-      table.string('location')       
+      table.integer('available')       
+      table.string('location')   
+      table.string('status')      
       table.text('image')      
-      table.text('resource')
+      table.text('resource') 
+      table.string('admission')
       
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
