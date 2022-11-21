@@ -24,16 +24,16 @@ export default class ItemValidator {
    *    ```
    */
   public schema = schema.create({
-    tag: schema.string.optional({}, [rules.required()]),
-    reference: schema.string({}, [rules.required()]),
-    category: schema.string({}, [rules.required()]),    
+    tag: schema.string.optional(),
+    reference: schema.string({}, [rules.required()]),     
     quantity: schema.number([rules.required()]),
     available: schema.number.optional(),
     location: schema.string.optional(),  
     status: schema.string([rules.required()]),  
     image: schema.string.optional(),
     resource: schema.string.optional(),
-    admission:  schema.string.optional()
+    admission:  schema.string.optional(),
+    category_id: schema.number([rules.required()]),   
   })
 
   /**

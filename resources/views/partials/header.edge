@@ -10,35 +10,112 @@
         <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
             <!-- Search -->
             <div class="navbar-nav align-items-center">
-                <div class="nav-item d-flex align-items-center me-2">
-                    <i class="bx bx-search fs-4 lh-0 me-2"></i>
-                    <input type="text" class="form-control border shadow-none" placeholder="Search..."
-                        onchange="itemSearch(this.value)" aria-label="Search..." autofocus />
+                <div class="nav-item d-flex align-items-center">
+
+                    <a class="example-image-link" href="{{ userS.photo }}" data-lightbox="roadtrip">
+                        <img class="rounded float-start" height="50px" onerror="imageError(event)"
+                            src="{{ userS.photo }}" />
+                    </a>
+
+                    <div class="d-flex flex-column ms-2 mt-1">
+                        <small class="mb-1"><strong>{{userS.identification}}</strong></small>
+                        <small class="text-muted">{{userS.name}} {{userS.lastname}}</small>
+                    </div>
 
 
-                    <select class="form-select ms-2" aria-label="Default select example" id="modeSearch">
-                        <option value="tag" selected>Tag</option>
-                        <option value="reference">Referencia</option>
-                    </select>
-                </div>    
+                    {{-- <a href="/" class="menu-link text-primary me-2">
+                        <span style="font-size: 1.3em;">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                    </a>
+
+                    <input type="text" class="form-control-sm border shadow-none" placeholder="Buscar..."
+                        onchange="itemSearch(this.value)" aria-label="Search..." /> --}}
+
+                </div>
 
             </div>
             <!-- /Search -->
 
             <ul class="navbar-nav flex-row align-items-center ms-auto">
-                <!-- Place this tag where you want the button to render. -->
-                <li class="menu-item me-4 mt-2">
-                    <a href="/cart/list" class="menu-link">
-                        <span style="font-size: 1.5em; color: rgb(49, 7, 173);">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                        </span>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            {{totalItems}}
-                            <span class="visually-hidden">unread messages</span>
-                        </span>
-                    </a>
 
-                </li>             
+
+                <div class="btn-group me-2">
+                    <a href="/user/group/0" class="btn btn-primary btn-sm" aria-current="page"><i
+                            class="fa-solid fa-user"></i></a>
+                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item">
+                            <a href="/group/groups" class="menu-link">
+                                <span>
+                                    <i class="menu-icon fa-solid fa-user-group"></i>
+                                </span>
+                                <div data-i18n="Basic">Grupos</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="btn-group me-2">
+                    <a href="/item/category/0" class="btn btn-success btn-sm" aria-current="page"><i
+                            class="fa-solid fa-cubes"></i></a>
+                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item">
+                            <a href="/category/categories" class="menu-link text-success">
+                                <span>
+                                    <i class="menu-icon fa-solid fa-rectangle-list"></i>
+                                </span>
+                                <div data-i18n="Basic">Categorías</div>
+                            </a>
+                        </li>
+
+                        <li class="dropdown-item">
+                            <a href="/item/maintenance" class="menu-link text-success">
+                                <span>
+                                    <i class="menu-icon fa-solid fa-wrench"></i>
+                                </span>
+                                <div data-i18n="Basic">Mantenimiento</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="btn-group me-2">
+                    <a href="/cart/list" class="btn btn-warning btn-sm" aria-current="page"><i
+                            class="fa-solid fa-cart-shopping"></i></a>
+                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item">
+                            <a href="/loan/user/0" class="menu-link text-warning">
+                                <span>
+                                    <i class="menu-icon fa-solid fa-box"></i>
+                                </span>
+                                <div data-i18n="Basic">Préstamos</div>
+                            </a>
+                        </li>
+
+                        <li class="dropdown-item">
+                            <a href="cards-basic.html" class="menu-link text-warning">
+                                <span>
+                                    <i class="menu-icon fa-solid fa-clock-rotate-left"></i>
+                                </span>
+                                <div data-i18n="Basic">Historial</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+
 
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">

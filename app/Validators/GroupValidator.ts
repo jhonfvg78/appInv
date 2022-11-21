@@ -25,7 +25,7 @@ export default class GroupValidator {
    */
   public schema = schema.create({
     group: schema.string({}, [rules.required()]),
-    description: schema.string.optional({}, [rules.required()]),
+    description: schema.string.optional(),
   })
 
   /**

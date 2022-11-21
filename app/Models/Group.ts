@@ -6,10 +6,10 @@ export default class Group extends BaseModel {
   public id: number
 
   @column()
-  public group: string =""
+  public group: string = ""
 
   @column()
-  public description: string =""
+  public description: string = ""
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

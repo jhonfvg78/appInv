@@ -16,13 +16,72 @@
             <!-- Layout container -->
             <div class="layout-page">
                 <!-- Navbar -->
-                {{-- @include('partials/header') --}}
+                @include('partials/header')
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
                     <div class="container mt-2">
+                        <nav class="navbar navbar-dark navbar-expand-md bg-dark ">
+                            <div class="container"> 
+                                <div class="d-flex flex-row">   
+                                    @if(mode)                                        
+                                    <a class="example-image-link" href="{{ user.photo }}"
+                                    data-lightbox="roadtrip">                                           
+                                    <img class="rounded float-start" height="50px"
+                                        onerror="imageError(event)" src="{{ user.photo }}" />
+                                    </a>
+                                    @endif
+                                    <div class="d-flex flex-column ms-2 mt-1">
+                                        <small class="mb-1"><i class="fa-solid fa-list-check me-1"></i> <span><strong>PRÉSTAMOS </strong></span> {{count}}</small>
+                                        @if(mode)
+                                        <small class="text-muted">{{user.name}} {{user.lastname}} - {{user.identification}}</small>                                                
+                                        @endif
+                                    </div>
+                                </div>
+                                <button class="navbar-toggler" data-bs-toggle="collapse"
+                                    data-bs-target="#navcol-5">
+                                    <span class="visually-hidden">Toggle
+                                        navigation</span>
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div id="navcol-5" class="collapse navbar-collapse">
+                                    <ul class="navbar-nav ms-auto">
+                                        <li class="nav-item nav-link">
+                                            <input type="text" class="form-control-sm border shadow-none"
+                                                placeholder="Buscar usuario" onchange="itemSearch(this.value)"
+                                                autofocus />
+                                        </li>
+                                        <li class="nav-item nav-link">                                                    
+                                            <div class="btn-group" role="group"
+                                                aria-label="Basic mixed styles example">
+                                                <a href="/user/group/NA" class="btn btn-primary btn-sm"
+                                                    aria-current="page" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" data-bs-title="Usuarios"><i
+                                                        class="fa-solid fa-user"></i></a>
+                                                <button type="button" class="btn btn-warning btn-sm"
+                                                    onclick=" selectAllRows()" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" data-bs-title="Seleccionar"><i
+                                                        class="fa-solid fa-list-check"></i></button>
+                                                <button type="button" class="btn btn-info btn-sm"
+                                                    onclick=" deselectAllRows()" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top"
+                                                    data-bs-title="Deseleccionar"><i
+                                                        class="fa-solid fa-list-ul"></i></button>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item nav-link">
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-success btn-sm"
+                                                onclick=" showModal()">
+                                                Recibir
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
                         <div class="card">
-                            <div class="card-header">
+                            {{--  <div class="card-header">
                                 <nav class="navbar navbar-dark navbar-expand-md bg-dark ">
                                     <div class="container"> 
                                         <div class="d-flex flex-row">   
@@ -34,7 +93,7 @@
                                             </a>
                                             @endif
                                             <div class="d-flex flex-column ms-2 mt-1">
-                                                <small class="mb-1"><i class="fa-solid fa-list-check me-1"></i> PRÉSTAMOS: {{count}}</small>
+                                                <small class="mb-1"><i class="fa-solid fa-list-check me-1"></i> <span><strong>PRÉSTAMOS </strong></span> {{count}}</small>
                                                 @if(mode)
                                                 <small class="text-muted">{{user.name}} {{user.lastname}} - {{user.identification}}</small>                                                
                                                 @endif
@@ -82,7 +141,7 @@
                                         </div>
                                     </div>
                                 </nav>
-                            </div>
+                            </div>  --}}
                             <div class="card-body">
                                 <div class="table-responsive text-nowrap">
                                     <div id="events">

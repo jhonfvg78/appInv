@@ -14,67 +14,74 @@
             <!-- Layout container -->
             <div class="layout-page">
                 <!-- Navbar -->
-                {{-- @include('partials/header') --}}
+                @include('partials/header')
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
                     <!-- Content -->
                     <div class="container mt-2">
                         <div class="card">
-                            <div class="card-header">
-                                <nav class="navbar navbar-dark navbar-expand-md bg-dark ">
-                                    <div class="container">
-
-                                        <div class="d-flex flex-row">
-                                            <i class="menu-icon fa-solid fa-layer-group"></i>
-                                            @if(!mode)
-                                            <span>Elementos / Categoría: {{ category }}
-                                            </span>
-                                            @else
-                                            <span>Elementos en mantenimiento
-                                            </span>
-                                            @end
-                                        </div>
-
-                                        <button class="navbar-toggler" data-bs-toggle="collapse"
-                                            data-bs-target="#navcol-5">
-                                            <span class="visually-hidden">Toggle
-                                                navigation</span>
-                                            <span class="navbar-toggler-icon"></span>
-                                        </button>
-
-                                        <div id="navcol-5" class="collapse navbar-collapse">
-                                            <ul class="navbar-nav ms-auto">
-                                                @if(!mode)
-                                                <li class="nav-item nav-link">
-                                                    <input type="text" class="form-control-sm border shadow-none"
-                                                        placeholder="Buscar" onchange="itemSearch(this.value)"
-                                                        autofocus />
-                                                </li>
-                                                <li class="nav-item nav-link">
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-primary btn-sm"
-                                                        data-bs-toggle="modal" data-bs-target="#categoryModal">
-                                                        Categorías
-                                                    </button>
-                                                </li>
-                                                <li class="nav-item nav-link">
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-success btn-sm"
-                                                        data-bs-toggle="modal" data-bs-target="#createModal">
-                                                        Nuevo
-                                                    </button>
-                                                </li>
-
-                                                @else
-                                                <li class="nav-item nav-link">
-                                                    <span class="badge rounded-pill bg-light text-dark">{{count}}</span>
-                                                </li>
-                                                @end
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </nav>
+                            @if(flashMessages.has('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <div> <i class="fa-solid fa-check me-2"></i>
+                                    {{ flashMessages.get('success') }}
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
                             </div>
+                            @end
+                            <nav class="navbar navbar-dark navbar-expand-md bg-dark ">
+                                <div class="container">
+
+                                    <div class="d-flex flex-row">
+                                       
+                                        @if(!mode)
+                                        <i class="menu-icon fa-solid fa-cubes"></i>
+                                        <span><strong>ELEMENTOS </strong> / {{ category }}
+                                        </span>
+                                        @else
+                                        <i class="menu-icon fa-solid fa-wrench"></i>                                        
+                                        <span><strong>MANTENIMIENTO</strong></span>
+                                        @end
+                                    </div>
+
+                                    <button class="navbar-toggler" data-bs-toggle="collapse"
+                                        data-bs-target="#navcol-5">
+                                        <span class="visually-hidden">Toggle
+                                            navigation</span>
+                                        <span class="navbar-toggler-icon"></span>
+                                    </button>
+
+                                    <div id="navcol-5" class="collapse navbar-collapse">
+                                        <ul class="navbar-nav ms-auto">
+                                            @if(!mode)
+                                            <li class="nav-item nav-link">
+                                                <input type="text" class="form-control-sm border shadow-none"
+                                                    placeholder="Buscar" onchange="itemSearch(this.value)"
+                                                    autofocus />
+                                            </li>
+                                            <li class="nav-item nav-link">
+                                                <button type="button" class="btn btn-primary btn-sm"
+                                                    data-bs-toggle="modal" data-bs-target="#categoryModal">
+                                                    Categorías
+                                                </button>
+                                            </li>
+                                            <li class="nav-item nav-link">
+                                                <a href="/item/create" class="btn btn-success btn-sm"
+                                                    aria-current="page" data-bs-toggle="tooltip"
+                                                    data-bs-placement="top" data-bs-title="Editar">Nuevo</a>
+                                            </li>
+                                            @else
+                                            <li class="nav-item nav-link">
+                                                <span class="badge rounded-pill bg-light text-dark">{{count}}</span>
+                                            </li>
+                                            @end
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav>
+                            {{--  <div class="card-header">
+                               
+                            </div>  --}}
                             <div class="card-body">
                                 <div class="table-responsive text-nowrap">
                                     <table id="dataTables"
@@ -127,13 +134,13 @@
                                                         </a>
                                                         @end
                                                         <a href="{{item.resource}}" target="_blank"
-                                                            class="btn btn-outline-success btn-sm" aria-current="page"
+                                                            class="btn btn-outline-primary btn-sm" aria-current="page"
                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                             data-bs-title="Recursos"><i class="fa-solid fa-cloud"></i>
                                                         </a>
                                                         @if(!mode)
                                                         <a href="/item/delete/{{item.id}}"
-                                                            class="btn btn-outline-danger btn-sm" aria-current="page"
+                                                            class="btn btn-outline-primary btn-sm" aria-current="page"
                                                             data-bs-toggle="tooltip" data-bs-placement="top"
                                                             data-bs-title="Eliminar"> <i class="fa-solid fa-trash"></i>
                                                         </a>
@@ -142,15 +149,15 @@
                                                 </td>
                                                 @if(!mode)
                                                 <td>
-                                                    <a href="/cart/select/{{item.id}}"
-                                                        class="btn btn-outline-warning btn-sm" aria-current="page">
+                                                    <a href="/cart/store/{{item.id}}" class="btn btn-warning btn-sm"
+                                                        aria-current="page">
                                                         <i class="fa-solid fa-cart-plus"></i>
                                                     </a>
                                                 </td>
                                                 @else
                                                 <td>
-                                                    <a href="/cart/select/{{item.id}}"
-                                                        class="btn btn-outline-warning btn-sm" aria-current="page">
+                                                    <a href="/cart/store/{{item.id}}" class="btn btn-warning btn-sm"
+                                                        aria-current="page">
                                                         <i class="fa-solid fa-cart-plus"></i>
                                                     </a>
                                                 </td>
@@ -182,15 +189,12 @@
                 </div>
                 <div class="modal-body">
                     <div class="list-group">
-                        <a href="/item/category/NA" class="list-group-item list-group-item-action">
+                        <a href="/item/category/0" class="list-group-item list-group-item-action">
                             <li class="d-flex pb-1">
-                                <div class="avatar flex-shrink-0 me-3">
-                                    <img src="/template/img/icons/brands/asana.png" class="rounded" />
-                                </div>
                                 <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                     <div class="me-2">
                                         <small class="text-muted d-block mb-1">NA</small>
-                                        <h6 class="mb-0"></h6>
+                                        <h6 class="mb-0">Sin categoría</h6>
                                     </div>
                                     <div class="user-progress d-flex align-items-center gap-1">
                                     </div>
@@ -198,7 +202,7 @@
                             </li>
                         </a>
                         @each(category in categories)
-                        <a href="/item/category/{{category.name}}" class="list-group-item list-group-item-action">
+                        <a href="/item/category/{{category.id}}" class="list-group-item list-group-item-action">
                             <li class="d-flex pb-1">
                                 <div class="avatar flex-shrink-0 me-3">
                                     <img src="{{category.image}}" class="rounded" />
@@ -208,11 +212,6 @@
                                         <small class="text-muted d-block mb-1">{{category.name}}</small>
                                         <h6 class="mb-0">{{category.description}}</h6>
                                     </div>
-                                    <div class="user-progress d-flex align-items-center gap-1">
-                                        <span style="font-size: 1.5em; color: rgb(14, 173, 86);">
-                                            <i class="fa-solid fa-square-check"></i>
-                                        </span>
-                                    </div>
                                 </div>
                             </li>
                         </a>
@@ -221,109 +220,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Create-->
-    <div class="modal" id="createModal">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">NUEVO ELEMENTO</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="/item/store" method="POST" class="row g-3">
-                        <div class="col-md-6">
-                            <img src="/template/img/item/item.png" class="d-block rounded border" height="120"
-                                id="itemImage" data-lightbox="roadtrip" onerror="imageError(event)" />
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row">
-                                <label for="image" class="form-label">URL Imagen</label>
-                                <div class="input-group">
-                                    <button class="btn btn-primary" type="button" onclick="clearUrlImage()"
-                                        id="button-addon2"><i class="fa-solid fa-ban"></i></button>
-                                    <input type="text" class="form-control" id="image" name="image"
-                                        onchange="updateImage()" />
-                                    <button class="btn btn-warning" type="button" onclick="openUrlImage()"
-                                        id="button-addon2"><i class="fa-solid fa-eye"></i></button>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <label for="resource" class="form-label">URL Recursos</label>
-                                <div class="input-group">
-                                    <button class="btn btn-primary" type="button" id="button-addon2"
-                                        onclick="clearUrlResource()"><i class="fa-solid fa-ban"></i></button></button>
-                                    <input type="text" class="form-control" id="resource" name="resource" />
-                                    <button class="btn btn-warning" type="button" onclick="openUrlResource()"
-                                        id="button-addon2"><i class="fa-solid fa-eye"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="reference" class="form-label">Referencia</label>
-                            <input class="form-control" type="text" name="reference" id="reference" required />
-                        </div>
-                        <div class="col-md-6">
-                            <label for="tag" class="form-label">Tag</label>
-                            <div class="input-group">
-                                <input class="form-control" type="text" id="tag" name="tag" autofocus
-                                    style="text-transform: uppercase" required />
-                                <button class="btn btn-primary" type="button" id="button-addon2" onclick="genId()">
-                                    <i class="fa-solid fa-tag"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="category" class="form-label">Categoría</label>
-                            <div class="input-group">
-                                <a class="btn btn-primary" href="/category/list" role="button"><i
-                                        class="fa-solid fa-list"></i></a>
-                                <select id="category" name="category" class="form-select">
-                                    <option value="NA">NA</option>
-                                    @each(category in categories)
-                                    <option value="{{category.name}}">{{category.name}}</option>
-                                    @end
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label for="quantity" class="form-label">Cantidad</label>
-                            <input type="number" class="form-control" id="quantity" name="quantity" min="0" required />
-                        </div>
-
-                        <div class="col-md-4" hidden>
-                            <label for="available" class="form-label">Disponible</label>
-                            <input type="number" class="form-control" id="available" name="available" min="0"/>
-                        </div>
-
-                        <div class="col-md-4">
-                            <label for="location" class="form-label">Ubicación</label>
-                            <input type="text" class="form-control" id="location" name="location"
-                                style="text-transform: uppercase" />
-                        </div>
-
-
-                        <div class="col-md-4" hidden>
-                            <input type="text" class="form-control" id="status" name="status" value="Disponible"
-                                style="text-transform: uppercase" />
-                        </div>
-
-                        <div class="col-md-4" hidden>
-                            <input type="text" class="form-control" id="admission" name="admission" value=""
-                                style="text-transform: uppercase" />
-                        </div>
-
-
-                        <div class="col-12 mt-4">
-                            <button type="submit" class="btn btn-success">Guardar</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>

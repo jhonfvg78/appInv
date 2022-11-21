@@ -2,24 +2,28 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Group from 'App/Models/Group'
 import User from 'App/Models/User'
 import GroupValidator from 'App/Validators/GroupValidator'
+import userSelect from './userSelect'
 
 
 export default class GroupsController {
 
     //Views
     public async viewList({ view }: HttpContextContract) {
+        let userS = await new userSelect().select()
         const groups = await Group.all()
-        return view.render('group/groupList', { groups: groups })
+        return view.render('group/groupList', { groups: groups, userS: userS })
     }
 
     public async viewEdit({ view, params }: HttpContextContract) {
+        let userS = await new userSelect().select()
         const group = await Group.find(params.id)
-        return view.render('group/groupUpdate', { group: group })
+        return view.render('group/groupUpdate', { group: group, userS: userS })
     }
 
     public async viewDelete({ view, params }: HttpContextContract) {
+        let userS = await new userSelect().select()
         const group = await Group.find(params.id)
-        return view.render('group/groupDelete', { group: group })
+        return view.render('group/groupDelete', { group: group, userS: userS })
     }
 
     //Api
@@ -29,13 +33,7 @@ export default class GroupsController {
     }
 
     public async apiStore({ request, response }: HttpContextContract) {
-        let payload;
-        try {
-            payload = await request.validate(GroupValidator);
-        } catch (error) {
-            console.log(error.messages);
-        }
-
+        const payload = await request.validate(GroupValidator);
         await Group.create(payload);
         response.redirect('/group/groups')
     }
@@ -44,13 +42,6 @@ export default class GroupsController {
         const payload = await request.validate(GroupValidator);
         const group = await Group.find(params.id)
         if (group) {
-            const users = await User
-                .query()
-                .where('group', group.group)
-            users.forEach(async user => {
-                user.group = payload.group
-                await user.merge(user.toJSON()).save()
-            });
             await group.merge(payload).save()
             response.redirect('/group/groups')
         }
@@ -63,10 +54,10 @@ export default class GroupsController {
             if (group) {
                 const users = await User
                     .query()
-                    .where('group', group.group)
+                    .where('group_id', group.id)
                 users.forEach(async user => {
-                    user.group = "NA"
-                    await user.merge(user.toJSON()).save()
+                    user.group_id = 0
+                    await user.save()
                 });
                 await group.delete()
                 response.redirect('/group/groups')

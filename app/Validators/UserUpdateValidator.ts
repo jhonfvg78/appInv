@@ -28,9 +28,9 @@ export default class UserUpdateValidator {
     name: schema.string({}, [rules.required()]),
     lastname: schema.string({}, [rules.required()]),
     email: schema.string.optional(),
-    phone: schema.string.optional(),
-    group: schema.string({}, [rules.required()]),
+    phone: schema.string.optional(),    
     photo: schema.string.optional(),
+    group_id: schema.number([rules.required()]),
   })
 
   /**

@@ -44,7 +44,7 @@ Route.get('/', async ({ view }) => {
 Route.group(() => {
   //Views
   Route.get('/search/:value', 'UsersController.viewListGroup') 
-  Route.get('/group/:group', 'UsersController.viewListGroup')
+  Route.get('/group/:group_id', 'UsersController.viewListGroup')
   Route.get('/create', 'UsersController.viewCreate')  
   Route.get('/edit/:id', 'UsersController.viewEdit')  
   Route.get('/delete/:id', 'UsersController.viewDelete') 
@@ -59,8 +59,9 @@ Route.group(() => {
 Route.group(() => {
   //Views
   Route.get('/search/:value', 'ItemsController.viewSearch')  
-  Route.get('/category/:category', 'ItemsController.viewListCategory')
+  Route.get('/category/:category_id', 'ItemsController.viewListCategory')
   Route.get('/maintenance/', 'ItemsController.viewListMaintenance')
+  Route.get('/create', 'ItemsController.viewCreate') 
   Route.get('/edit/:id', 'ItemsController.viewEdit') 
   Route.get('/delete/:id', 'ItemsController.viewDelete') 
   //Api
@@ -106,6 +107,6 @@ Route.group(() => {
   Route.get('/store/:id', 'CartsController.apiStore')  
   Route.get('/loan/:id', 'CartsController.apiStoreLoan')   
   Route.get('/delete', 'CartsController.apiDeleteAll')
-  Route.post('/delete/:id', 'CartsController.apiDelete')
+  Route.post('/delete/:id', 'CartsController.apiDelete') 
 }).prefix('/cart')
 

@@ -7,8 +7,7 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.string('tag')
-      table.string('reference')
-      table.string('category')
+      table.string('reference')      
       table.integer('quantity') 
       table.integer('available')       
       table.string('location')   
@@ -16,6 +15,7 @@ export default class extends BaseSchema {
       table.text('image')      
       table.text('resource') 
       table.string('admission')
+      table.integer('category_id')
       
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

@@ -20,9 +20,14 @@
           <!-- Content -->
           <div class="container mt-2">
             <div class="card">
-              <div class="card-body">
+              <div class="card-body">               
+                @if(flashMessages.get('errors.identification'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <div>El usuario ya existe.</div>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @end
                 <h5 class="card-title">NUEVO USUARIO</h5>
-
                 <form action="/user/store" method="POST" class="row g-3">
                   <div class="col-md-6">
                     <img src="{{ flashMessages.get('itemImage', '/template/img/item/item.png') }}"
@@ -37,25 +42,36 @@
                         <button class="btn btn-primary" type="button" onclick="clearUrlImage()" id="button-addon2"><i
                             class="fa-solid fa-ban"></i></button>
                         <input type="text" class="form-control" id="photo" name="photo" onchange="updateImage()"
-                          value="{{ flashMessages.get('photo', '') }}" />
+                        @if(flashMessages.get('photo', '')!=null)
+                        value="{{ flashMessages.get('photo', '') }}" 
+                        @end 
+                          />
                         <button class="btn btn-warning" type="button" onclick="openUrlImage()" id="button-addon2"><i
                             class="fa-solid fa-eye"></i></button>
                       </div>
                     </div>
-
                   </div>
 
                   <div class="col-md-6">
                     <label for="identification" class="form-label">Identificación</label>
+                    @if(flashMessages.get('errors.identification'))
+                    <input class="form-control" type="text" name="identification" id="identification"
+                      value="{{ flashMessages.get('identification', '') }}" required style="border-color: crimson" autofocus />
+                    @else
                     <input class="form-control" type="text" name="identification" id="identification"
                       value="{{ flashMessages.get('identification', '') }}" required />
+                    @end
+
                   </div>
 
                   <div class="col-md-6">
                     <label for="tag" class="form-label">Tag</label>
                     <div class="input-group">
-                      <input class="form-control" type="text" id="tag" name="tag" autofocus
-                        value="{{ flashMessages.get('tag', '') }}" style="text-transform: uppercase"/>
+                      <input class="form-control" type="text" id="tag" name="tag"
+                      @if(flashMessages.get('tag', '')!=null)
+                        value="{{ flashMessages.get('tag', '') }}" 
+                      @end                         
+                        style="text-transform: uppercase" />
                       <button class="btn btn-primary" type="button" id="button-addon2" onclick="genId()">
                         <i class="fa-solid fa-tag"></i>
                       </button>
@@ -65,25 +81,41 @@
                   <div class="col-md-6">
                     <label for="name" class="form-label">Nombres</label>
                     <input class="form-control" type="text" name="name" id="name"
-                      value="{{ flashMessages.get('name', '') }}" required />
+                    @if(flashMessages.get('name', '')!=null)
+                    value="{{ flashMessages.get('name', '') }}" 
+                    @end 
+                      required />
                   </div>
 
                   <div class="col-md-6">
                     <label for="lastname" class="form-label">Apellidos</label>
                     <input class="form-control" type="text" name="lastname" id="lastname"
-                      value="{{ flashMessages.get('lastname', '') }}" required />
+
+                    @if(flashMessages.get('lastname', '')!=null)
+                    value="{{ flashMessages.get('lastname', '') }}" 
+                    @end
+                      
+                      required />
                   </div>
 
                   <div class="col-md-4">
                     <label for="email" class="form-label">Correo</label>
                     <input class="form-control" type="email" name="email" id="email"
-                      value="{{ flashMessages.get('email', '') }}" />
+
+                    @if(flashMessages.get('email', '')!=null)
+                    value="{{ flashMessages.get('email', '') }}" 
+                    @end
+                       />
                   </div>
 
                   <div class="col-md-4">
                     <label for="phone" class="form-label">Teléfono</label>
                     <input class="form-control" type="text" name="phone" id="phone"
-                      value="{{ flashMessages.get('phone', '') }}" />
+
+                    @if(flashMessages.get('phone', '')!=null)
+                    value="{{ flashMessages.get('phone', '') }}" 
+                    @end
+                     />
                   </div>
 
                   <div class="col-md-4">
@@ -91,10 +123,11 @@
                     <div class="input-group">
                       <a class="btn btn-primary" href="/category/list" role="button"><i
                           class="fa-solid fa-list"></i></a>
-                      <select id="group" name="group" class="form-select" value="{{ flashMessages.get('group', '') }}" required>
-                        <option value="NA">NA</option>
+                      <select id="group_id" name="group_id" class="form-select"
+                        value="{{ flashMessages.get('group_id', '') }}" required>
+                        <option value="0">NA</option>
                         @each(group in groups)
-                        <option value="{{group.group}}">{{group.group}}</option>
+                        <option value="{{group.id}}">{{group.group}}</option>
                         @end
                       </select>
                     </div>
@@ -102,7 +135,7 @@
 
                   <div class="col-12 mt-4">
                     <button type="submit" class="btn btn-success">Guardar</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <a href="javascript:history.back()" class="btn btn-secondary">Cancelar</a>
                   </div>
                 </form>
               </div>

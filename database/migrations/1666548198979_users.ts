@@ -10,10 +10,10 @@ export default class extends BaseSchema {
       table.string('tag', 255).notNullable()
       table.string('name', 255).notNullable()
       table.string('lastname', 255).notNullable()
-      table.string('email', 255).notNullable().unique()
-      table.string('phone', 255).notNullable()
-      table.string('group', 255).notNullable()
+      table.string('email', 255).notNullable()
+      table.string('phone', 255).notNullable()      
       table.text('photo').notNullable()
+      table.integer('group_id', 255).notNullable()
       /**
        * Uses timestampz for PostgreSQL and DATETIME2 for MSSQL
        */

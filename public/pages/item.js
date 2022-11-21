@@ -24,7 +24,7 @@ function imageError(event) {
     event.onerror = null
 }
 
-function clearUrlImage() {
+function clearUrlImage() {    
     document.getElementById("image").value = "";
     let image = document.getElementById("itemImage");
     let imageTemplate = document.getElementById("imageTemplate");

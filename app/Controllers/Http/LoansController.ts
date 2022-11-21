@@ -2,9 +2,11 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Loan from 'App/Models/Loan';
 import User from 'App/Models/User';
 import { DateTime } from 'luxon';
+import userSelect from './userSelect';
 
 export default class LoansController {
   public async viewListLoans({ view, params }: HttpContextContract) {
+    let userS = await new userSelect().select()
     const user = await User.find(params.user_id)
     let count = 0;
     let loans;
@@ -22,10 +24,10 @@ export default class LoansController {
           loan.days = diffInMonths.days;
         });
       }
-      return view.render('loan/loanList', { loans: loans, user: user, count: count, mode: true })
+      return view.render('loan/loanList', { loans: loans, user: user, count: count, mode: true, userS:userS })
     }
     else {
-      return view.render('loan/loanList', { loans: loans, user: user, count: count, mode: false })
+      return view.render('loan/loanList', { loans: loans, user: user, count: count, mode: false, userS:userS })
     }
   }
 

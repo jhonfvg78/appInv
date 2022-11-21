@@ -22,7 +22,9 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">ACTUALIZAR</h5>
-                <form  id="updateForm" action="/item/udpate/{{item.id}}" method="POST" class="row g-3 mt-1">
+                <img src="/template/img/item/item.png" id="imageTemplate" hidden />
+
+                <form id="updateForm" action="/item/udpate/{{item.id}}" method="POST" class="row g-3 mt-1">
                   <div class="col-md-6">
                     <a class="example-image-link" href="{{ item.image }}" data-lightbox="roadtrip">
                       <img src="{{item.image}}" class="d-block rounded border" height="120" id="itemImage"
@@ -33,23 +35,30 @@
                     <div class="row">
                       <label for="image" class="form-label">URL Imagen</label>
                       <div class="input-group">
-                        <button class="btn btn-primary" type="button" onclick="clearUrlImage()" id="button-addon2"><i
-                            class="fa-solid fa-ban"></i></button>
+                        <button class="btn btn-primary" type="button" onclick="openUrlImage()"><i
+                            class="fa-solid fa-eye"></i></button>
+
+                        <button class="btn btn-primary" type="button" onclick="clearUrlImage()">
+                          <i class="fa-solid fa-trash"></i></button>
+
                         <input type="text" class="form-control" id="image" name="image" onchange="updateImage()"
                           value="{{item.image}}" />
-                        <button class="btn btn-warning" type="button" onclick="openUrlImage()" id="button-addon2"><i
-                            class="fa-solid fa-eye"></i></button>
+
                       </div>
                     </div>
                     <div class="row mt-2">
                       <label for="resource" class="form-label">URL Recursos</label>
                       <div class="input-group">
-                        <button class="btn btn-primary" type="button" id="button-addon2" onclick="clearUrlResource()"><i
-                            class="fa-solid fa-ban"></i></button>
+
+                        <button class="btn btn-primary" type="button" onclick="openUrlResource()"><i
+                            class="fa-solid fa-eye"></i></button>
+
+                        <button class="btn btn-primary" type="button" onclick="clearUrlResource()"><i
+                            class="fa-solid fa-trash"></i></button>
+
                         <input type="text" class="form-control" id="resource" name="resource"
                           value="{{item.resource}}" />
-                        <button class="btn btn-warning" type="button" onclick="openUrlResource()" id="button-addon2"><i
-                            class="fa-solid fa-eye"></i></button>
+
                       </div>
                     </div>
                   </div>
@@ -61,8 +70,8 @@
                   <div class="col-md-6">
                     <label for="tag" class="form-label">Tag</label>
                     <div class="input-group">
-                      <input class="form-control" type="text" id="tag" name="tag" autofocus
-                        style="text-transform:uppercase" required value="{{item.tag}}" />
+                      <input class="form-control" type="text" id="tag" name="tag" style="text-transform:uppercase"
+                        required value="{{item.tag}}" />
                       <button class="btn btn-primary" type="button" id="button-addon2"
                         onclick="genId()">Generar</button>
                     </div>
@@ -72,13 +81,13 @@
                     <div class="input-group">
                       <button class="btn btn-primary" type="button" id="button-addon2"><i
                           class="fa-solid fa-list"></i></button>
-                      <select id="category" name="category" class="form-select">
-                        <option value="NA">NA</option>
+                      <select id="category_id" name="category_id" class="form-select">
+                        <option value="0">NA</option>
                         @each(category in categories)
-                        @if(category.name==item.category)
-                        <option value="{{category.name}}" selected>{{category.name}}</option>
+                        @if(category.id==item.category_id)
+                        <option value="{{category.id}}" selected>{{category.name}}</option>
                         @else
-                        <option value="{{category.name}}">{{category.name}}</option>
+                        <option value="{{category.id}}">{{category.name}}</option>
                         @end
                         @end
                       </select>
@@ -92,7 +101,8 @@
 
                   <div class="col-md-4" hidden>
                     <label for="available" class="form-label">Disponible</label>
-                    <input type="number" class="form-control" id="available" name="available" min="0"  value="{{item.quantity}}"/>
+                    <input type="number" class="form-control" id="available" name="available" min="0"
+                      value="{{item.quantity}}" />
                   </div>
 
                   <div class="col-md-2">
@@ -120,14 +130,14 @@
 
                   <div class="col-12 mt-4">
                     <button class="btn btn-danger" type="button" data-bs-toggle="modal"
-                        onclick="updateItem()">Guardar</button>
+                      onclick="updateItem()">Guardar</button>
                     <a href="javascript:history.back()" class="btn btn-secondary">Cancelar</a>
                   </div>
 
-                  {{--  <div class="col-12 mt-4">
+                  {{-- <div class="col-12 mt-4">
                     <button type="submit" class="btn btn-success">Guardar</button>
                     <a href="javascript:history.back()" class="btn btn-secondary">Cancelar</a>
-                  </div>  --}}
+                  </div> --}}
                 </form>
               </div>
             </div>

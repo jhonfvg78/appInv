@@ -9,10 +9,7 @@ export default class Item extends BaseModel {
   public tag: string = ""
 
   @column()
-  public reference: string = ""
-
-  @column()
-  public category: string = ""
+  public reference: string = ""  
 
   @column()
   public quantity: number
@@ -34,6 +31,9 @@ export default class Item extends BaseModel {
 
   @column()
   public admission: string = ""
+
+  @column()
+  public category_id: number
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime

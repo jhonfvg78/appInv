@@ -5,33 +5,42 @@ import User from 'App/Models/User';
 import UserSelect from 'App/Models/UserSelect';
 import UserUpdateValidator from 'App/Validators/UserUpdateValidator';
 import UserValidator from 'App/Validators/UserValidator';
+import userSelect from './userSelect';
 
 
 export default class UsersController {
 
   //Views
   public async viewListGroup({ view, params }: HttpContextContract) {
+    let userS = await new userSelect().select()   
+
     const users = await User
       .query()
-      .where('group', params.group)
+      .where('group_id', params.group_id)
     const groups = await Group.all()
-    return view.render('user/userList', { users: users, groups: groups, group: params.group })
+    return view.render('user/userList', { users: users, groups: groups, group_id: params.group_id, userS: userS })
   }
 
-  public async viewCreate({ view }: HttpContextContract) {
+  public async viewCreate({ view }: HttpContextContract) {     
+    let userS = await new userSelect().select()   
+
     const groups = await Group.all()
-    return view.render('user/userCreate', { groups: groups })
+    return view.render('user/userCreate', { groups: groups, userS: userS })
   }
 
-  public async viewEdit({ view, params }: HttpContextContract) {
+  public async viewEdit({ view, params }: HttpContextContract) { 
+    let userS = await new userSelect().select()   
+
     const groups = await Group.all()
     const user = await User.find(params.id)
-    return view.render('user/userUpdate', { user: user, groups: groups })
+    return view.render('user/userUpdate', { user: user, groups: groups, userS: userS })
   }
 
   public async viewDelete({ view, params }: HttpContextContract) {
+    let userS = await new userSelect().select()   
+
     const user = await User.find(params.id)
-    return view.render('user/userDelete', { user: user })
+    return view.render('user/userDelete', { user: user, userS: userS })
   }
 
   //Api
@@ -41,14 +50,14 @@ export default class UsersController {
   }
 
   public async apiStore({ request, response, session }: HttpContextContract) {
-    try {
-      const payload = await request.validate(UserValidator);
-      await User.create(payload);
-      session.flash('success', 'El usuario se registró satisfactoriamente.')
-      response.redirect('/user/group/' + payload.group)
-    } catch (error) {
-      response.badRequest(error.messages)
-    }
+    // try {
+    const payload = await request.validate(UserValidator);
+    await User.create(payload);
+    session.flash('success', 'El usuario se registró satisfactoriamente.')
+    response.redirect('/user/group/' + payload.group_id)
+    // } catch (error) {
+    //   response.badRequest(error.messages)
+    // }   
 
   }
 
@@ -57,7 +66,7 @@ export default class UsersController {
     const user = await User.findOrFail(params.id)
     await user.merge(payload).save()
     session.flash('success', 'El usuario se actualizó satisfactoriamente.')
-    response.redirect('/user/group/' + payload.group)
+    response.redirect('/user/group/' + payload.group_id)
   }
 
   public async apiDelete({ view, request, response, params }: HttpContextContract) {
@@ -71,13 +80,13 @@ export default class UsersController {
       }
       else {
         const user = await User.findOrFail(params.id)
-        await user.delete()       
-        response.redirect('/user/group/NA')
+        await user.delete()
+        response.redirect('/user/group/0')
       }
     }
     else {
       return view.render('shared/messages', { source: "userDelete", identification: data.identification })
-    }   
+    }
   }
 
   public async apiSelect({ params, response }: HttpContextContract) {
